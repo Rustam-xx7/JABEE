@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" style="background:#0F1117; font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Card Shadow & Gradients -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Linear Gradients for Scene Swatches -->
+    <linearGradient id="officeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E7E3DB"/>
+      <stop offset="100%" stop-color="#F3F1EC"/>
+    </linearGradient>
+    
+    <linearGradient id="spotlightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C8A24A"/>
+      <stop offset="100%" stop-color="#84631C"/>
+    </linearGradient>
+
+    <linearGradient id="headerAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6B1A"/>
+      <stop offset="100%" stop-color="#FFA066"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Background Container -->
+  <rect width="1000" height="1000" fill="#0D0F15"/>
+  
+  <!-- Subtle Grid Pattern in Background -->
+  <g opacity="0.05" stroke="#FFFFFF" stroke-width="1">
+    <path d="M0 100 H1000 M0 200 H1000 M0 300 H1000 M0 400 H1000 M0 500 H1000 M0 600 H1000 M0 700 H1000 M0 800 H1000 M0 900 H1000"/>
+    <path d="M100 0 V1000 M200 0 V1000 M300 0 V1000 M400 0 V1000 M500 0 V1000 M600 0 V1000 M700 0 V1000 M800 0 V1000 M900 0 V1000"/>
+  </g>
+
+  <!-- Main Canvas Card (Square with Rounded Edges) -->
+  <rect x="40" y="40" width="920" height="920" rx="28" fill="#151821" stroke="#232734" stroke-width="2" filter="url(#softShadow)"/>
+
+  <!-- Header Section -->
+  <g transform="translate(80, 80)">
+    <!-- Small Brand Pill -->
+    <rect x="0" y="0" width="108" height="28" rx="14" fill="#FF6B1A" fill-opacity="0.15" stroke="#FF6B1A" stroke-width="1.5"/>
+    <circle cx="14" cy="14" r="4" fill="#FF6B1A"/>
+    <text x="26" y="18" fill="#FF6B1A" font-size="11" font-weight="700" letter-spacing="1.5">PALETTE</text>
+
+    <!-- Title and Subtitle -->
+    <text x="0" y="68" fill="#FFFFFF" font-size="32" font-weight="800" letter-spacing="-0.5">JABEE Brand &amp; Scene Colors</text>
+    <text x="0" y="96" fill="#8E95A5" font-size="14" font-weight="500">Core identity colors and environmental scene gradients from the storytelling flow</text>
+
+    <!-- Right-aligned Brand Tag -->
+    <text x="840" y="55" text-anchor="end" fill="#FFFFFF" font-size="24" font-weight="900" letter-spacing="-0.5">JABEE<tspan fill="#FF6B1A">.</tspan></text>
+    <text x="840" y="78" text-anchor="end" fill="#6B7280" font-size="12" font-weight="600" letter-spacing="1">COLOR SYSTEM GUIDE</text>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="80" y1="210" x2="920" y2="210" stroke="#232734" stroke-width="1.5"/>
+
+  <!-- ================= SECTION 1: PRIMARY & SECONDARY BRAND ================= -->
+  <g transform="translate(80, 235)">
+    <rect x="0" y="0" width="4" height="16" rx="2" fill="#FF6B1A"/>
+    <text x="14" y="13" fill="#D1D5DB" font-size="12" font-weight="700" letter-spacing="1.5">PRIMARY &amp; SECONDARY BRAND COLORS</text>
+  </g>
+
+  <!-- Row 1: The 3 Main Brand Anchors -->
+  <!-- Swatch 1: Primary Electric Orange -->
+  <g transform="translate(80, 265)">
+    <rect width="250" height="175" rx="18" fill="#1C202C" stroke="#2C3245" stroke-width="1.5" filter="url(#subtleShadow)"/>
+    <!-- Color preview area -->
+    <rect x="12" y="12" width="226" height="88" rx="12" fill="#FF6B1A"/>
+    <!-- Role badge -->
+    <rect x="24" y="24" width="76" height="22" rx="11" fill="#000000" fill-opacity="0.35"/>
+    <text x="62" y="38" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700" letter-spacing="0.5">PRIMARY</text>
+    <!-- Details -->
+    <text x="20" y="124" fill="#FFFFFF" font-size="16" font-weight="700">Electric Orange</text>
+    <text x="20" y="144" fill="#FF6B1A" font-size="14" font-weight="700" font-family="monospace">#FF6B1A</text>
+    <text x="20" y="162" fill="#8E95A5" font-size="11" font-weight="500">rgb(255, 107, 26) • CTAs &amp; Line</text>
+  </g>
+
+  <!-- Swatch 2: Obsidian Black -->
+  <g transform="translate(355, 265)">
+    <rect width="250" height="175" rx="18" fill="#1C202C" stroke="#2C3245" stroke-width="1.5" filter="url(#subtleShadow)"/>
+    <rect x="12" y="12" width="226" height="88" rx="12" fill="#111111" stroke="#2B3040" stroke-width="1"/>
+    <rect x="24" y="24" width="92" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.15"/>
+    <text x="70" y="38" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700" letter-spacing="0.5">SECONDARY</text>
+    <text x="20" y="124" fill="#FFFFFF" font-size="16" font-weight="700">Obsidian Black</text>
+    <text x="20" y="144" fill="#9CA3AF" font-size="14" font-weight="700" font-family="monospace">#111111</text>
+    <text x="20" y="162" fill="#8E95A5" font-size="11" font-weight="500">rgb(17, 17, 17) • Headings, Footer</text>
+  </g>
+
+  <!-- Swatch 3: Pure Clean White -->
+  <g transform="translate(630, 265)">
+    <rect width="250" height="175" rx="18" fill="#1C202C" stroke="#2C3245" stroke-width="1.5" filter="url(#subtleShadow)"/>
+    <rect x="12" y="12" width="226" height="88" rx="12" fill="#FFFFFF"/>
+    <rect x="24" y="24" width="80" height="22" rx="11" fill="#000000" fill-opacity="0.15"/>
+    <text x="64" y="38" text-anchor="middle" fill="#111111" font-size="10" font-weight="700" letter-spacing="0.5">NEUTRAL</text>
+    <text x="20" y="124" fill="#FFFFFF" font-size="16" font-weight="700">Clean White</text>
+    <text x="20" y="144" fill="#E5E7EB" font-size="14" font-weight="700" font-family="monospace">#FFFFFF</text>
+    <text x="20" y="162" fill="#8E95A5" font-size="11" font-weight="500">rgb(255, 255, 255) • Sections, Cards</text>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="80" y1="470" x2="920" y2="470" stroke="#232734" stroke-width="1.5"/>
+
+  <!-- ================= SECTION 2: SCENE AMBIENT COLORS ================= -->
+  <g transform="translate(80, 495)">
+    <rect x="0" y="0" width="4" height="16" rx="2" fill="#FF6B1A"/>
+    <text x="14" y="13" fill="#D1D5DB" font-size="12" font-weight="700" letter-spacing="1.5">STORY SCENE &amp; ENVIRONMENT COLORS</text>
+  </g>
+
+  <!-- Grid of 5 Scene Swatches (Scene 1 to Scene 4 + Spotlight) -->
+  <!-- Scene 1: Studio Warm White -->
+  <g transform="translate(80, 525)">
+    <rect width="180" height="165" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="160" height="72" rx="10" fill="#F6F5F2"/>
+    <rect x="18" y="18" width="62" height="18" rx="9" fill="#000000" fill-opacity="0.12"/>
+    <text x="49" y="31" text-anchor="middle" fill="#374151" font-size="9" font-weight="700">SCENE 1</text>
+    <text x="14" y="104" fill="#FFFFFF" font-size="14" font-weight="700">Studio Cream</text>
+    <text x="14" y="122" fill="#D1D5DB" font-size="12" font-weight="700" font-family="monospace">#F6F5F2</text>
+    <text x="14" y="140" fill="#8E95A5" font-size="10">Character 1 Morning</text>
+  </g>
+
+  <!-- Scene 2: Warm Concrete Grey -->
+  <g transform="translate(290, 525)">
+    <rect width="180" height="165" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="160" height="72" rx="10" fill="#CFCBC6"/>
+    <rect x="18" y="18" width="62" height="18" rx="9" fill="#000000" fill-opacity="0.2"/>
+    <text x="49" y="31" text-anchor="middle" fill="#1F2937" font-size="9" font-weight="700">SCENE 2</text>
+    <text x="14" y="104" fill="#FFFFFF" font-size="14" font-weight="700">Warm Grey Wall</text>
+    <text x="14" y="122" fill="#D1D5DB" font-size="12" font-weight="700" font-family="monospace">#CFCBC6</text>
+    <text x="14" y="140" fill="#8E95A5" font-size="10">Character 2 Balcony</text>
+  </g>
+
+  <!-- Scene 3: Dark Midnight Black -->
+  <g transform="translate(500, 525)">
+    <rect width="180" height="165" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="160" height="72" rx="10" fill="#0B0D12" stroke="#2B3040" stroke-width="1"/>
+    <rect x="18" y="18" width="62" height="18" rx="9" fill="#FFFFFF" fill-opacity="0.15"/>
+    <text x="49" y="31" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700">SCENE 3</text>
+    <text x="14" y="104" fill="#FFFFFF" font-size="14" font-weight="700">Midnight Dark</text>
+    <text x="14" y="122" fill="#9CA3AF" font-size="12" font-weight="700" font-family="monospace">#0B0D12</text>
+    <text x="14" y="140" fill="#8E95A5" font-size="10">Character 3 Stress</text>
+  </g>
+
+  <!-- Scene 3 Accent: Golden Spotlight Amber -->
+  <g transform="translate(710, 525)">
+    <rect width="180" height="165" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="160" height="72" rx="10" fill="url(#spotlightGrad)"/>
+    <rect x="18" y="18" width="70" height="18" rx="9" fill="#000000" fill-opacity="0.3"/>
+    <text x="53" y="31" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700">SPOTLIGHT</text>
+    <text x="14" y="104" fill="#FFFFFF" font-size="14" font-weight="700">Spotlight Amber</text>
+    <text x="14" y="122" fill="#E5C370" font-size="12" font-weight="700" font-family="monospace">#C8A24A</text>
+    <text x="14" y="140" fill="#8E95A5" font-size="10">Cave Light Beam</text>
+  </g>
+
+  <!-- Row 3: Scene 4 + Secondary Neutrals -->
+  <!-- Scene 4: Office Birch Gradient -->
+  <g transform="translate(80, 715)">
+    <rect width="250" height="155" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="230" height="66" rx="10" fill="url(#officeGrad)"/>
+    <rect x="18" y="18" width="62" height="18" rx="9" fill="#000000" fill-opacity="0.15"/>
+    <text x="49" y="31" text-anchor="middle" fill="#374151" font-size="9" font-weight="700">SCENE 4</text>
+    <text x="16" y="98" fill="#FFFFFF" font-size="14" font-weight="700">Office Birch Tone</text>
+    <text x="16" y="116" fill="#D1D5DB" font-size="12" font-weight="700" font-family="monospace">#E7E3DB → #F3F1EC</text>
+    <text x="16" y="134" fill="#8E95A5" font-size="10">Character 4 Modern Cubicle</text>
+  </g>
+
+  <!-- Supporting Neutral: Slate Charcoal (Text / Subtitles) -->
+  <g transform="translate(355, 715)">
+    <rect width="250" height="155" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="230" height="66" rx="10" fill="#4B5563"/>
+    <rect x="18" y="18" width="70" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
+    <text x="53" y="31" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700">BODY TEXT</text>
+    <text x="16" y="98" fill="#FFFFFF" font-size="14" font-weight="700">Slate Charcoal</text>
+    <text x="16" y="116" fill="#9CA3AF" font-size="12" font-weight="700" font-family="monospace">#4B5563 / #6B7280</text>
+    <text x="16" y="134" fill="#8E95A5" font-size="10">Paragraphs &amp; Secondary Copy</text>
+  </g>
+
+  <!-- Supporting Neutral: Subtle Border Grey -->
+  <g transform="translate(630, 715)">
+    <rect width="250" height="155" rx="16" fill="#1C202C" stroke="#2C3245" stroke-width="1.5"/>
+    <rect x="10" y="10" width="230" height="66" rx="10" fill="#E5E7EB"/>
+    <rect x="18" y="18" width="62" height="18" rx="9" fill="#000000" fill-opacity="0.15"/>
+    <text x="49" y="31" text-anchor="middle" fill="#374151" font-size="9" font-weight="700">BORDER</text>
+    <text x="16" y="98" fill="#FFFFFF" font-size="14" font-weight="700">Soft Border Grey</text>
+    <text x="16" y="116" fill="#D1D5DB" font-size="12" font-weight="700" font-family="monospace">#E5E7EB</text>
+    <text x="16" y="134" fill="#8E95A5" font-size="10">Card Outlines &amp; Dividers</text>
+  </g>
+
+  <!-- Footer Specs Stamp -->
+  <g transform="translate(80, 908)">
+    <text x="0" y="0" fill="#6B7280" font-size="11" font-weight="600">RATIO: 1:1 SQUARE (1000×1000px)</text>
+    <text x="420" y="0" text-anchor="middle" fill="#6B7280" font-size="11" font-weight="600">TYPOGRAPHY: PLUS JAKARTA SANS / MONTSERRAT</text>
+    <text x="840" y="0" text-anchor="end" fill="#6B7280" font-size="11" font-weight="600">WCAG AA COMPLIANT CONTRAST</text>
+  </g>
+</svg>

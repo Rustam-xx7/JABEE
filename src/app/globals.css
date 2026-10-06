@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #F6F5F2;
+    color: #111111;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Scroll reveal transitions */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-from-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-from-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-from-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-from-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Floating subtle badge animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-float-1 { animation: floatSlow 4s ease-in-out infinite; }
+.animate-float-2 { animation: floatReverse 4.8s ease-in-out infinite 0.5s; }
+.animate-float-3 { animation: floatSlow 5.5s ease-in-out infinite 1s; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F5F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d1cc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B1A;
+}
+
+/* Gradient mask utilities */
+.mask-fade-soft {
+  mask-image: radial-gradient(ellipse at 50% 50%, black 58%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 58%, transparent 92%);
+}
+.mask-fade-edges {
+  mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
+  -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
+}

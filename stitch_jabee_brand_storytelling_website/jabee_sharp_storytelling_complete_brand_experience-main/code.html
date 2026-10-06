@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JABEE — Office Professionals' Favourite Ride Booking App</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jabee: {
+              orange: '#FF6B1A',
+              orangeDark: '#E0550B',
+              orangeLight: '#FFF2EB',
+              black: '#111111',
+              darkBg: '#0B0D12',
+              warmGrey: '#CFCBC6',
+              studioBg: '#F6F5F2',
+              officeBg: '#EAE6DF',
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'Montserrat', 'sans-serif'],
+            display: ['Montserrat', 'Poppins', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-orange': '0 0 35px -5px rgba(255, 107, 26, 0.4)',
+            'soft': '0 20px 40px -15px rgba(0,0,0,0.06)',
+            'card': '0 10px 30px -10px rgba(0,0,0,0.04)',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Scroll reveal transitions */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-from-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-from-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-from-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-from-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Floating subtle badge animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+    .animate-float-1 { animation: floatSlow 4s ease-in-out infinite; }
+    .animate-float-2 { animation: floatReverse 4.8s ease-in-out infinite 0.5s; }
+    .animate-float-3 { animation: floatSlow 5.5s ease-in-out infinite 1s; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F6F5F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4d1cc;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF6B1A;
+    }
+  </style>
+</head>
+<body class="bg-[#F6F5F2] text-[#111111] font-sans antialiased overflow-x-hidden selection:bg-jabee-orange selection:text-white">
+<!-- TOP SCROLL PROGRESS BAR -->
+<div class="fixed top-0 left-0 w-full h-[3px] z-50 pointer-events-none" id="scroll-progress-container">
+<div class="h-full bg-jabee-orange w-0 transition-all duration-75 ease-out shadow-[0_0_8px_#FF6B1A]" id="scroll-progress"></div>
+</div>
+<!-- FIXED FLOATING NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-4 px-6 md:px-12 flex items-center justify-between" id="main-nav">
+<a class="flex items-center gap-3 group" href="#">
+<img alt="JABEE" class="h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnq2YPZd9YyxycQxTCWUPnWEqepy5INdWrMBIVhEHiOnHmpVWQB1o6RzctcKoIf54gbTa8K3x20bzwul_kSeBlWjnA7F1TNtivoQoqhpZDtOM41Y8HRBMEHLUehrMnJYRBKJ-qbOyE1a6v11bCW9NpARo3xQCsmV71sYXR6u54_A-lN1R8Uy6-9F55zLXzvqbrqSehlc5up4YWXbmrxgAy9eDsjtkMM8mfMKsTVMQC-L2zJn9kiojLeRJdUSCg1n03ZQ"/>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium transition-colors hover:text-jabee-orange text-[#333333]" href="#story" id="nav-link-story">Story</a>
+<a class="text-sm font-medium transition-colors hover:text-jabee-orange text-[#333333]" href="#bike-reveal" id="nav-link-bike">The Revelation</a>
+<a class="text-sm font-medium transition-colors hover:text-jabee-orange text-[#333333]" href="#features" id="nav-link-features">Features</a>
+<a class="text-sm font-medium transition-colors hover:text-jabee-orange text-[#333333]" href="#team" id="nav-link-team">Team</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="bg-jabee-orange hover:bg-jabee-orangeDark text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md shadow-jabee-orange/30 flex items-center gap-2" href="#download-section">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
+<path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.22-.387C3.13 21.282 3 20.468 3 19.349V4.651c0-1.119.13-1.933.39-2.45.064-.132.138-.262.22-.387zm1.48-.909l11.472 6.574-2.88 2.88L5.09.905zm0 22.19l8.59-8.59 2.88 2.88-11.47 6.57c.002 0 0-.86 0-.86zm12.39-7.098l3.14-1.8c.84-.48.84-1.26 0-1.74l-3.14-1.8-2.52 2.67 2.52 2.67z"></path>
+</svg>
+<span>Download App</span>
+</a>
+</div>
+</header>
+<!-- ========================================== -->
+<!-- STORY SCENE 1: Character 1 (Light Studio)  -->
+<!-- ========================================== -->
+<section class="relative min-h-screen w-full flex items-center justify-center pt-28 pb-20 px-6 md:px-16 lg:px-24 bg-[#F6F5F2] overflow-hidden" data-nav-mode="dark" id="story">
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
+<!-- Left text card -->
+<div class="lg:col-span-6 flex flex-col justify-center reveal-from-left">
+<div class="bg-white/95 p-8 md:p-12 rounded-3xl border border-neutral-200/80 shadow-card">
+<div class="flex items-center gap-3.5 mb-6">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full"></div>
+<span class="text-xs md:text-sm font-bold uppercase tracking-[0.25em] text-[#666666]">WEEKDAY MORNING</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-jabee-black tracking-tight leading-[1.12] mb-6 font-display">Every weekday, the same road to work.</h1>
+<p class="text-lg md:text-xl text-[#555555] font-normal leading-relaxed mb-8">Meet an everyday office professional. Bag on his shoulder, a long day ahead, and a ride to book.</p>
+<div class="flex items-center gap-4 text-xs font-semibold uppercase tracking-wider text-[#888888] pt-4 border-t border-[#EAE6DF]">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 08:30 AM Routine</span>
+<span>•</span>
+<span>Daily Office Rush</span>
+</div>
+</div>
+</div>
+<!-- Right: Crisp Character 1 with NO blur filter -->
+<div class="lg:col-span-6 flex justify-center items-center py-6 reveal-from-right">
+<img alt="Office professional character" class="max-h-[620px] w-auto object-contain drop-shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBoxgZ5wMy12f1Ed7I6lbBqCiKz7kdr6FhINl8zC3JwsVdOnc4SK_-vND6kjbzpHoVYyUV31EA-91SIrxhdKTMrcPgnXumqIGtZ9UuqkVYFZj1DpeEj9edvLyGDpWVeSEl2lTQXS1IrOIqyM0yHzPf1tFs7KbdvHeJ82wgqZqOA9_kOntQivQBk925yymV4cg6xTjvz9X47JhuwBKOLC85odBYzDLLJe6bVKtHY6GqDAlU5ceHaFD9DBGAMOoEBb5Hig"/>
+</div>
+</div>
+<!-- Seam merge gradient ONLY at boundary -->
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#CFCBC6] pointer-events-none z-10"></div>
+</section>
+<!-- ============================================================== -->
+<!-- STORY SCENE 2: Character 2 (Warm Grey Wall, Sunlit Greenery)   -->
+<!-- ============================================================== -->
+<section class="relative min-h-screen w-full flex items-center justify-center pt-28 pb-24 px-6 md:px-16 lg:px-24 bg-[#CFCBC6] overflow-hidden" data-nav-mode="dark">
+<!-- Full background image completely CRISP with NO blur filter -->
+<div class="absolute inset-0 z-0">
+<img alt="Every morning commute waiting" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC07UkhszDLPv8owlLbIrpfgYvhVdeVFKgvi_IYnE0otKmR7_E2pBjZFci9mmCvBFVew0d56iLnr6GboZSNhH85CXlPOAWQ75pncE55R1eovYZElx7PnrUPPpe7JfgCilqWxgNJWd8pAtVS3oxk4UNv8lzTCISPKPDP7IAvw4Cn8Pc5nI5UuJqXb9dbuSLhmhUAKgJGxj9ze0rjN4s8Q_XRV4jc-HYqW24-FicK8_b2otCORKt1P-JkH-eaA1h-ddyG6A"/>
+</div>
+<!-- Exact boundary blend only at top and bottom -->
+<div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-[#CFCBC6] to-transparent pointer-events-none z-10"></div>
+<div class="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-b from-transparent to-[#0B0D12] pointer-events-none z-10"></div>
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
+<!-- Left badge over character area -->
+<div class="lg:col-span-6 hidden lg:flex flex-col items-start justify-center">
+<div class="bg-white/90 px-5 py-3 rounded-2xl shadow-soft border border-white/80 inline-flex items-center gap-2 text-xs font-semibold text-[#333333] animate-float-2">
+<span>📍 Home → Tech Park (9.4 km)</span>
+</div>
+</div>
+<!-- Right text card: Clean semi-transparent card without blurring whole section -->
+<div class="lg:col-span-6 flex flex-col justify-center reveal-from-right">
+<div class="bg-white/90 p-8 md:p-12 rounded-3xl border border-white/70 shadow-2xl">
+<div class="flex items-center gap-3.5 mb-6">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full"></div>
+<span class="text-xs md:text-sm font-bold uppercase tracking-[0.25em] text-[#55524C]">SAME JOURNEY. EVERY DAY.</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-jabee-black tracking-tight leading-[1.12] mb-6 font-display">Every morning, he books the same ride.</h2>
+<p class="text-lg md:text-xl text-[#3A3835] font-normal leading-relaxed mb-8">Same pickup. Same drop. Same time. Yet he opens the app and does it all over again, five days a week.</p>
+<div class="grid grid-cols-5 gap-2 max-w-xs pt-2">
+<div class="h-2 rounded-full bg-jabee-orange"></div>
+<div class="h-2 rounded-full bg-jabee-orange"></div>
+<div class="h-2 rounded-full bg-jabee-orange"></div>
+<div class="h-2 rounded-full bg-jabee-orange"></div>
+<div class="h-2 rounded-full bg-jabee-orange"></div>
+</div>
+<span class="text-[11px] uppercase tracking-wider text-[#66635D] font-bold mt-2.5 block">5 days every week • Zero consistency</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- STORY SCENE 3: Character 3 (Dark, Stressed, Spotlight)         -->
+<!-- ============================================================== -->
+<section class="relative min-h-screen w-full flex items-center justify-center pt-28 pb-24 px-6 md:px-16 lg:px-24 bg-[#0B0D12] text-white overflow-hidden" data-nav-mode="light">
+<!-- Crisp Character 3 background with NO blur filter -->
+<div class="absolute inset-0 z-0">
+<img alt="Stressed commuter in spotlight" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3vVgDcc4i1Q5Idk6GnZG85NorufbvBi2zbHIR7YiHFQftwMvZHRQWEJhHSaAn9bU41wVa6oT8ZmnK3zsFH9XqZQhIiWQTUrrBrRJtuWGemjY-EF2sy-_iGZWxgZS4_8zmepeBgtfJAn7nQkJyJqonweFaCt_uiD3jBY82VZ_EJ-anuEQ2x8GZ5ZLmJpLNYvBovYnkiFfCa0Y1FNMKpk0UP3lCXI1LR7rZITMOglah_HHVzPWoDzlLxoA6Mui4ljFdaA"/>
+</div>
+<!-- Top and bottom blend masks only at segment edges -->
+<div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-[#0B0D12] to-transparent pointer-events-none z-10"></div>
+<div class="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-b from-transparent to-[#EAE6DF] pointer-events-none z-10"></div>
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
+<!-- Left text card with dark backdrop -->
+<div class="lg:col-span-6 flex flex-col justify-center reveal-from-left">
+<div class="bg-[#0B0D12]/85 p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+<div class="flex items-center gap-3.5 mb-6">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full shadow-[0_0_12px_#FF6B1A]"></div>
+<span class="text-xs md:text-sm font-bold uppercase tracking-[0.25em] text-[#FF9E54]">THEN THE STRESS BEGINS</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 font-display">Prices jump.<br/>Captains cancel.<br/><span class="text-neutral-400">Time runs out.</span></h2>
+<p class="text-base md:text-lg text-[#CCCCCC] font-normal leading-relaxed mb-8">Sometimes the fare changes. Sometimes no captain accepts. Rides get cancelled again and again, and every cancellation costs minutes he doesn't have. The day starts with stress and a bad mood.</p>
+<div class="bg-black/60 border border-white/15 rounded-2xl p-4 max-w-md">
+<div class="flex items-center justify-between text-xs text-red-400 font-semibold mb-2">
+<span class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              High demand in your area
+            </span>
+<span class="bg-red-500/25 text-red-300 px-2 py-0.5 rounded text-[10px] font-bold">+68% Surge</span>
+</div>
+<div class="text-xs font-medium text-neutral-300">Searching for nearby captains (3m 42s elapsed)...</div>
+</div>
+</div>
+</div>
+<!-- Right: Crisp floating status badges -->
+<div class="lg:col-span-6 relative flex flex-col items-center justify-center gap-4 py-8 reveal-from-right">
+<div class="bg-[#181A20]/95 border border-amber-500/50 text-amber-300 px-5 py-3 rounded-2xl text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-float-1">
+<span class="text-amber-400 font-bold">↑</span>
+<span>Fare increased to $28.50</span>
+</div>
+<div class="bg-[#181A20]/95 border border-blue-500/40 text-blue-200 px-5 py-3 rounded-2xl text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-float-2">
+<span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+<span>Searching for captain...</span>
+</div>
+<div class="bg-[#241315]/95 border border-red-500/50 text-red-300 px-5 py-3 rounded-2xl text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-float-3">
+<span class="text-red-400 font-bold">✕</span>
+<span>Ride cancelled by captain</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- STORY SCENE 4: Character 4 (Bright Office & Modern Relief)    -->
+<!-- ============================================================== -->
+<section class="relative min-h-screen w-full flex items-center justify-center pt-28 pb-28 px-6 md:px-16 lg:px-24 bg-[#EAE6DF] overflow-hidden" data-nav-mode="dark">
+<!-- Crisp Office Background with NO blur filter -->
+<div class="absolute inset-0 z-0">
+<img alt="Calm commuter holding mug at office desk" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG1BBm2s-HzuRdip7Wp5i_NceuKXrxMSzCrPcxgPZwbQFS3yyvk1KZ_NgFgrhWHavodrX7dUtbNmNWksvag6Yw2NQ7vxTm8zwXleonPAV2tpD4LXXT04td_p8c_bfgkz0oHwv_92JD3S4CfmJzDsXGMaXIVRGwsRjqy9-Z-7d78uipyqt2tEqYjg9D89UqJjMw-5TH61HnD_5tcQVsl2kbszjhnrRzXmW1-mECiR2vuJJTN491ncZeIzxE8H310Rh1cQ"/>
+</div>
+<!-- Top and bottom seam blend transitions -->
+<div class="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-[#EAE6DF] to-transparent pointer-events-none z-10"></div>
+<div class="absolute bottom-0 left-0 w-full h-36 bg-gradient-to-b from-transparent to-white pointer-events-none z-10"></div>
+<div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
+<div class="lg:col-span-6 hidden lg:flex items-end justify-start">
+<div class="bg-white/95 px-5 py-3 rounded-2xl shadow-soft border border-emerald-500/20 flex items-center gap-3 animate-float-1">
+<div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
+<div>
+<div class="text-xs font-bold text-jabee-black">Captain Rajesh arrived</div>
+<div class="text-[10px] text-neutral-500">Same friendly smile • 8:28 AM</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col justify-center reveal-from-right">
+<div class="bg-white/92 p-8 md:p-12 rounded-3xl border border-white/80 shadow-2xl">
+<div class="flex items-center gap-3.5 mb-6">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full"></div>
+<span class="text-xs md:text-sm font-bold uppercase tracking-[0.25em] text-jabee-orange">WHAT IF?</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-jabee-black tracking-tight leading-[1.12] mb-6 font-display">What if he never had to book again?</h2>
+<p class="text-lg md:text-xl text-[#444444] font-normal leading-relaxed mb-8">A fixed captain. Ready at the same perfect time. The same fair price. Every single day. No headache. No stress. Just a good start to the day.</p>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<div class="flex items-center gap-2.5 bg-neutral-50/80 p-3 rounded-xl border border-neutral-200">
+<span class="w-2 h-2 rounded-full bg-jabee-orange"></span>
+<span class="text-xs font-bold text-jabee-black">Fixed Daily Captain</span>
+</div>
+<div class="flex items-center gap-2.5 bg-neutral-50/80 p-3 rounded-xl border border-neutral-200">
+<span class="w-2 h-2 rounded-full bg-jabee-orange"></span>
+<span class="text-xs font-bold text-jabee-black">Zero Morning Surge</span>
+</div>
+<div class="flex items-center gap-2.5 bg-neutral-50/80 p-3 rounded-xl border border-neutral-200">
+<span class="w-2 h-2 rounded-full bg-jabee-orange"></span>
+<span class="text-xs font-bold text-jabee-black">Automated Dispatch</span>
+</div>
+<div class="flex items-center gap-2.5 bg-neutral-50/80 p-3 rounded-xl border border-neutral-200">
+<span class="w-2 h-2 rounded-full bg-jabee-orange"></span>
+<span class="text-xs font-bold text-jabee-black">Punctual Peace of Mind</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- BIKE REVEAL SECTION: Transformation with Full Width Parts       -->
+<!-- ============================================================== -->
+<section class="py-24 px-6 md:px-16 lg:px-24 bg-white text-jabee-black" data-nav-mode="dark" id="bike-reveal">
+<div class="max-w-7xl mx-auto">
+<!-- Section Intro -->
+<div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+<span class="text-xs font-extrabold uppercase tracking-[0.3em] text-jabee-orange block mb-3">
+        THE TRANSFORMATION
+      </span>
+<h2 class="text-3xl md:text-5xl font-extrabold text-jabee-black tracking-tight font-display mb-4">
+        Building effortless commutes brick by brick.
+      </h2>
+<p class="text-base md:text-lg text-neutral-500">
+        The same daily struggle turned into an engineered, reliable rhythm for the modern professional.
+      </p>
+</div>
+<!-- Full-width bike parts image cleanly displayed -->
+<div class="w-full max-w-5xl mx-auto mb-16 reveal-on-scroll">
+<div class="bg-white rounded-3xl p-4 md:p-8 border border-neutral-100 shadow-card hover:shadow-soft transition-shadow">
+<img alt="JABEE Lego bike parts" class="w-full h-auto object-contain mx-auto rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1F_v81qA3n54k2Mr02d9Tg5fQnV2dyEspyf-eFQWq-8PtAP-7IJ-WcL_Iv65g09Wbzc3FC6Ab_bBmN5g5vcAGQKeGWjHfc9S2tWi43qXYxgWAuaBF8RpLKcv9nNCKjhaPc3HMrAO4560Y-CksFppx_smDUhVSc4v9R7qz_5Y5HQpw1nNVI2hdTxfI_yTqViq3GUSvDZZWu_bX-huY9unyyVntsfJuSLeRCw1JMHcM-2PZY1gBA1f7UvOdSmw_t148Ow"/>
+</div>
+</div>
+<!-- 3 Transformation Stage Points verbatim from SCREEN_8 -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20 reveal-on-scroll">
+<div class="bg-[#FAFAFA] p-7 rounded-2xl border border-neutral-200/80 hover:border-jabee-orange transition-colors">
+<div class="flex items-start gap-3.5 mb-2">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full flex-shrink-0 mt-0.5"></div>
+<div>
+<span class="text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] text-jabee-black block font-display">SAME PIECES. DIFFERENT POSSIBILITIES.</span>
+<p class="text-sm text-neutral-500 mt-2 font-normal leading-relaxed">Every commuter has the same hours, roads, and transit needs. We rethink how those pieces connect.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#FAFAFA] p-7 rounded-2xl border border-neutral-200/80 hover:border-jabee-orange transition-colors">
+<div class="flex items-start gap-3.5 mb-2">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full flex-shrink-0 mt-0.5"></div>
+<div>
+<span class="text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] text-jabee-black block font-display">A ROAD TAKES SHAPE.</span>
+<p class="text-sm text-neutral-500 mt-2 font-normal leading-relaxed">Routes align. Predictable pickup corridors replace frantic app refreshes every single morning.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#FAFAFA] p-7 rounded-2xl border border-neutral-200/80 hover:border-jabee-orange transition-colors">
+<div class="flex items-start gap-3.5 mb-2">
+<div class="w-[3px] h-6 bg-jabee-orange rounded-full flex-shrink-0 mt-0.5"></div>
+<div>
+<span class="text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] text-jabee-black block font-display">MOVEMENT FINDS FORM.</span>
+<p class="text-sm text-neutral-500 mt-2 font-normal leading-relaxed">The JABEE bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Brand Reveal on pure white -->
+<div class="max-w-4xl mx-auto text-center border-t border-neutral-100 pt-16 reveal-on-scroll">
+<!-- JABEE Logo -->
+<div class="flex justify-center items-center mb-6">
+<img alt="JABEE Go On" class="h-16 md:h-20 w-auto object-contain mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZDSPM91rcZw1TQmtHqOREWtwnpnMA1AEd65ggLRqU9Bl8TKNaNgdtgyyT9b367a0r0-4R1_jnjs4U5Euzma4ZRIjJ_-6lNN4WCsmWbtSN2WyK7fOJj5CNQb54lr2ngMy7lsHHtnP-9CWkNUhsCzgWviPkfib-acARhwh6nUQblcu6Jylagbt9IeDvPNNBNREt2uQ7I-Y9xC0dPR0eQd0bWeNNXm742Nbsd4qKKrpQ2a9nBLuX2VTANDC-pn_0uYzSXA"/>
+</div>
+<!-- Tagline -->
+<p class="text-xl md:text-2xl lg:text-3xl font-bold text-neutral-900 tracking-tight max-w-2xl mx-auto mb-6 font-display">
+        Office professionals' favourite ride booking app.
+      </p>
+<!-- Founder story paragraph -->
+<p class="text-base md:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed mb-10">
+        Our founder lived this problem every morning. So he built JABEE for everyone who makes the same commute. The JABEE team makes it stress-free for you.
+      </p>
+<!-- Primary CTA: Google Play -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4" id="download-section">
+<a class="inline-flex items-center gap-3.5 bg-jabee-orange hover:bg-jabee-orangeDark text-white px-8 py-4 rounded-full text-base font-bold tracking-wide shadow-glow-orange hover:scale-105 active:scale-95 transition-all duration-200" href="#download">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.22-.387C3.13 21.282 3 20.468 3 19.349V4.651c0-1.119.13-1.933.39-2.45.064-.132.138-.262.22-.387zm1.48-.909l11.472 6.574-2.88 2.88L5.09.905zm0 22.19l8.59-8.59 2.88 2.88-11.47 6.57c.002 0 0-.86 0-.86zm12.39-7.098l3.14-1.8c.84-.48.84-1.26 0-1.74l-3.14-1.8-2.52 2.67 2.52 2.67z"></path>
+</svg>
+<div class="text-left leading-tight">
+<div class="text-[10px] uppercase font-semibold text-white/80 tracking-wider">Available on</div>
+<div class="text-lg font-black tracking-tight">Get it on Google Play</div>
+</div>
+</a>
+<div class="text-xs font-semibold text-neutral-400">
+          ⭐ 4.9/5 from 12,000+ daily riders
+        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- MEET THE JABEE TEAM: White Cards, 4 Groups (Restored)          -->
+<!-- ============================================================== -->
+<section class="py-24 px-6 md:px-16 lg:px-24 bg-[#FAFAFA] border-t border-neutral-100" data-nav-mode="dark" id="team">
+<div class="max-w-7xl mx-auto">
+<!-- Section Title -->
+<div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+<div class="flex items-center justify-center gap-3 mb-3">
+<div class="w-[3px] h-5 bg-jabee-orange rounded-full"></div>
+<span class="text-xs font-extrabold uppercase tracking-[0.25em] text-neutral-500">BEHIND THE HELMET</span>
+</div>
+<h2 class="text-3xl md:text-5xl font-extrabold text-jabee-black tracking-tight font-display mb-4">
+        The people behind JABEE
+      </h2>
+<p class="text-neutral-500 text-base md:text-lg">
+        A dedicated crew in Burdwan, West Bengal obsessed with bringing calm, joy, and punctuality to your everyday commute.
+      </p>
+</div>
+<!-- 4 Team Groups as specified in SCREEN_8 -->
+<div class="space-y-16">
+<!-- Group 1: Founders -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-2.5 h-2.5 rounded-full bg-jabee-orange"></span>
+<h3 class="text-sm md:text-base font-bold text-jabee-black tracking-wider uppercase font-display">Founders</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v1h4V6a2 2 0 0 0-2-2z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Founder Name]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Founder &amp; CEO</p>
+<p class="text-xs text-neutral-500 mt-2">Daily commuter turned mobility architect.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v1h4V6a2 2 0 0 0-2-2z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Co-Founder Name]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Co-Founder &amp; COO</p>
+<p class="text-xs text-neutral-500 mt-2">Scaling captain networks with empathy.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 2: Tech Team -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-2.5 h-2.5 rounded-full bg-jabee-orange"></span>
+<h3 class="text-sm md:text-base font-bold text-jabee-black tracking-wider uppercase font-display">Tech Team</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Tech Lead Name]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Head of Engineering</p>
+<p class="text-xs text-neutral-500 mt-2">Route optimization &amp; reliable dispatch.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Mobile Architect]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Lead Android Developer</p>
+<p class="text-xs text-neutral-500 mt-2">Zero-lag rider tracking experience.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Product Designer]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Lead Product Designer</p>
+<p class="text-xs text-neutral-500 mt-2">Crafting clutter-free ride journeys.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Backend Specialist]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Infrastructure Lead</p>
+<p class="text-xs text-neutral-500 mt-2">99.99% uptime for morning commutes.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 3: Marketing Team -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-2.5 h-2.5 rounded-full bg-jabee-orange"></span>
+<h3 class="text-sm md:text-base font-bold text-jabee-black tracking-wider uppercase font-display">Marketing Team</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Growth Lead]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Head of Growth</p>
+<p class="text-xs text-neutral-500 mt-2">Connecting office parks with fleets.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Brand Strategist]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Brand Communications</p>
+<p class="text-xs text-neutral-500 mt-2">Championing stress-free morning stories.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Corporate Partnerships]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">B2B Mobility Lead</p>
+<p class="text-xs text-neutral-500 mt-2">Direct office subscription perks.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 4: Social Media Team -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-2.5 h-2.5 rounded-full bg-jabee-orange"></span>
+<h3 class="text-sm md:text-base font-bold text-jabee-black tracking-wider uppercase font-display">Social Media Team</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Community Manager]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Community &amp; Support</p>
+<p class="text-xs text-neutral-500 mt-2">Listening to commuter stories 24/7.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Content Creator]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Video &amp; Visual Content</p>
+<p class="text-xs text-neutral-500 mt-2">Sharing the #MorningPeace vibe.</p>
+</div>
+</div>
+<div class="group bg-white rounded-2xl p-6 border border-neutral-200/80 shadow-card hover:shadow-xl hover:border-jabee-orange transition-all duration-300">
+<div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neutral-100 flex items-center justify-center relative overflow-hidden group-hover:bg-orange-50 transition-colors">
+<svg class="w-12 h-12 text-neutral-400 group-hover:text-jabee-orange transition-colors" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1v5a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-5H5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"></path>
+</svg>
+</div>
+<div class="text-center">
+<h4 class="text-base font-bold text-jabee-black group-hover:text-jabee-orange transition-colors">[Campaign Specialist]</h4>
+<p class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mt-1">Social Engagement</p>
+<p class="text-xs text-neutral-500 mt-2">Celebrating top punctuality captains.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- APP FEATURES: 3x3 Card Grid (Verbatim SCREEN_8)                -->
+<!-- ============================================================== -->
+<section class="py-28 px-6 md:px-16 lg:px-24 bg-white" data-nav-mode="dark" id="features">
+<div class="max-w-7xl mx-auto">
+<!-- Header -->
+<div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
+<div class="flex items-center justify-center gap-3 mb-3">
+<div class="w-[3px] h-5 bg-jabee-orange rounded-full"></div>
+<span class="text-xs font-extrabold uppercase tracking-[0.25em] text-jabee-orange">CORE CAPABILITIES</span>
+</div>
+<h2 class="text-3xl md:text-5xl font-extrabold text-jabee-black tracking-tight font-display mb-4">
+        Engineered for the corporate commute.
+      </h2>
+<p class="text-neutral-500 text-base md:text-lg">
+        Nine key pillars that transform everyday office travel from an erratic gamble into a dependable luxury.
+      </p>
+</div>
+<!-- 3x3 Card Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Fixed daily ride</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Book once, ride every weekday without ever opening the app to hail again.</p>
+</div>
+<!-- Feature 2 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Same captain, same time</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Meet the same trusted professional rider outside your gate at your exact scheduled minute.</p>
+</div>
+<!-- Feature 3 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Same fair price, no surprise surge</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Rain, festival, or peak hour — your monthly commute fare remains locked and strictly fair.</p>
+</div>
+<!-- Feature 4 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Scheduled pickups and reminders</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Gentle automated alerts 10 minutes prior so you can finish your coffee without rushing.</p>
+</div>
+<!-- Feature 5 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Live ride tracking</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">High precision real-time GPS telemetry showing your dedicated bike approaching.</p>
+</div>
+<!-- Feature 6 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Verified captains</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Every partner undergoes rigorous criminal background checks, defensive ride testing, and ratings review.</p>
+</div>
+<!-- Feature 7 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">In-app chat with your captain</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Instant one-tap direct messaging with masked phone numbers for absolute rider privacy.</p>
+</div>
+<!-- Feature 8 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Easy payments: UPI, cash, cards</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">Automate autopay via UPI or corporate cards, or opt for seamless cash reconciliation.</p>
+</div>
+<!-- Feature 9 -->
+<div class="group bg-white p-8 rounded-3xl border border-neutral-100 hover:border-jabee-orange shadow-card hover:shadow-soft transition-all duration-300">
+<div class="w-12 h-12 rounded-2xl bg-orange-50 text-jabee-orange flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-jabee-orange group-hover:text-white transition-all">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-jabee-black mb-2 font-display">Ride history and trip sharing</h3>
+<p class="text-neutral-600 text-sm leading-relaxed">One-click monthly expense statements and shareable live links for family tracking.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- COMPLETE RESTORED FOOTER                                        -->
+<!-- ============================================================== -->
+<footer class="bg-jabee-black text-white pt-20 pb-12 px-6 md:px-16 lg:px-24 border-t border-neutral-800" data-nav-mode="light">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-800">
+<!-- Brand Info -->
+<div class="lg:col-span-5 space-y-4">
+<div class="flex items-center gap-3">
+<img alt="JABEE" class="h-8 md:h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJOQGdr2Zstbpwa-aR2IzZAvMBvtEhoFFxC7o2JE7Qub07VzCwn-kfezHxUg1EXX4KTXsYdZM4O1IZn-n42231otckXxYmea0TpshOQXi4Y7P9kFc3jsYV76IgjAMe26o86JlV0-6pM41DZtR2wsQr9Zm0G78K8ssrrj6ykYc3FxHCm4GREjfhNdyQpCRrGsVXJHRChF66gmxlYtfPp2rVYl2YorJtioGiCeBMxqCbn9TtYKBYaQ_ut3Vn-ct131VMtA"/>
+</div>
+<p class="text-base text-neutral-300 font-medium max-w-sm">Office professionals' favourite ride booking app.</p>
+<p class="text-xs text-neutral-500 max-w-sm leading-relaxed pt-2">Eliminating morning commute friction with predictable daily motorcycle captains for office goers.</p>
+</div>
+<!-- Quick Links -->
+<div class="lg:col-span-3 space-y-3">
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-jabee-orange">
+          Quick Links
+        </div>
+<ul class="space-y-2.5 text-sm text-neutral-400">
+<li><a class="hover:text-white transition-colors" href="#story">Story</a></li>
+<li><a class="hover:text-white transition-colors" href="#team">Team</a></li>
+<li><a class="hover:text-white transition-colors" href="#features">Features</a></li>
+<li><a class="hover:text-white transition-colors" href="#download-section">Download</a></li>
+</ul>
+</div>
+<!-- App Download & Contact -->
+<div class="lg:col-span-4 space-y-4">
+<div class="text-xs font-bold uppercase tracking-[0.2em] text-jabee-orange">
+          Get the App
+        </div>
+<!-- Google Play Button -->
+<a class="inline-flex items-center gap-3 bg-neutral-900 border border-neutral-700 hover:border-jabee-orange px-5 py-3 rounded-2xl text-white transition-all duration-200 group" href="#download">
+<svg class="w-6 h-6 fill-jabee-orange group-hover:scale-110 transition-transform" viewbox="0 0 24 24">
+<path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.22-.387C3.13 21.282 3 20.468 3 19.349V4.651c0-1.119.13-1.933.39-2.45.064-.132.138-.262.22-.387zm1.48-.909l11.472 6.574-2.88 2.88L5.09.905zm0 22.19l8.59-8.59 2.88 2.88-11.47 6.57c.002 0 0-.86 0-.86zm12.39-7.098l3.14-1.8c.84-.48.84-1.26 0-1.74l-3.14-1.8-2.52 2.67 2.52 2.67z"></path>
+</svg>
+<div class="text-left">
+<div class="text-[9px] uppercase font-semibold text-neutral-400">Download for Android</div>
+<div class="text-sm font-bold tracking-tight">Google Play</div>
+</div>
+</a>
+<!-- Contact Email -->
+<div class="pt-2 text-sm text-neutral-400">
+<span class="text-xs text-neutral-500 block">Contact Us</span>
+<a class="hover:text-jabee-orange transition-colors font-medium" href="mailto:support@jabee.in">support@jabee.in</a>
+</div>
+<!-- Social Icons -->
+<div class="flex items-center gap-4 pt-2">
+<!-- Instagram -->
+<a class="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 hover:border-jabee-orange hover:text-jabee-orange text-neutral-400 flex items-center justify-center transition-colors" href="#" title="Instagram">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+</svg>
+</a>
+<!-- LinkedIn -->
+<a class="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 hover:border-jabee-orange hover:text-jabee-orange text-neutral-400 flex items-center justify-center transition-colors" href="#" title="LinkedIn">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+</svg>
+</a>
+<!-- X -->
+<a class="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 hover:border-jabee-orange hover:text-jabee-orange text-neutral-400 flex items-center justify-center transition-colors" href="#" title="X">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+</svg>
+</a>
+<!-- YouTube -->
+<a class="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 hover:border-jabee-orange hover:text-jabee-orange text-neutral-400 flex items-center justify-center transition-colors" href="#" title="YouTube">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Copyright Statement -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-500 gap-4">
+<div>
+        © 2026 JABEE, Burdwan, West Bengal. All rights reserved.
+      </div>
+<div class="flex items-center gap-6">
+<a class="hover:text-neutral-400 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-neutral-400 transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-neutral-400 transition-colors" href="#">Captain Code of Conduct</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- SCRIPTS -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Scroll Progress Bar
+    const progressBar = document.getElementById('scroll-progress');
+    const nav = document.getElementById('main-nav');
+    const navLinks = [
+      document.getElementById('nav-link-story'),
+      document.getElementById('nav-link-bike'),
+      document.getElementById('nav-link-features'),
+      document.getElementById('nav-link-team')
+    ];
+    const sections = document.querySelectorAll('section[data-nav-mode], footer[data-nav-mode]');
+
+    function handleScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
+
+      // Check current visible section mode
+      let currentMode = 'dark';
+      const navOffset = 70;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= navOffset && rect.bottom >= navOffset) {
+          currentMode = sec.getAttribute('data-nav-mode') || 'dark';
+        }
+      });
+
+      if (scrollTop > 40) {
+        if (currentMode === 'light') {
+          nav.classList.add('bg-[#0B0D12]/90', 'backdrop-blur-md', 'border-b', 'border-white/10');
+          nav.classList.remove('bg-white/90', 'border-neutral-200');
+        } else {
+          nav.classList.add('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-neutral-200/70');
+          nav.classList.remove('bg-[#0B0D12]/90', 'border-white/10');
+        }
+      } else {
+        nav.classList.remove('bg-white/90', 'bg-[#0B0D12]/90', 'backdrop-blur-md', 'border-b', 'border-neutral-200/70', 'border-white/10');
+      }
+
+      // Text colors
+      if (currentMode === 'light') {
+        navLinks.forEach(link => {
+          if (link) {
+            link.classList.remove('text-[#333333]');
+            link.classList.add('text-neutral-200');
+          }
+        });
+      } else {
+        navLinks.forEach(link => {
+          if (link) {
+            link.classList.remove('text-neutral-200');
+            link.classList.add('text-[#333333]');
+          }
+        });
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    // 2. Intersection Observer for Scroll Reveals
+    const revealItems = document.querySelectorAll('.reveal-on-scroll, .reveal-from-left, .reveal-from-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealItems.forEach(el => observer.observe(el));
+    setTimeout(() => {
+      revealItems.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('active');
+        }
+      });
+    }, 100);
+  });
+</script>
+</body></html>
