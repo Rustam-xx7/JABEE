@@ -1,0 +1,605 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>JABEE — Brand Storytelling</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              orange: '#FF6B1A',
+              dark: '#111111',
+              night: '#0B0D12',
+              cream: '#F6F5F2',
+              grey: '#CFCBC6',
+              birch: '#ECE8E1'
+            }
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="custom-utilities">
+    /* Custom subtle blur and glow utilities */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .dark-glass-card {
+      background: rgba(18, 21, 28, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .spotlight-glow {
+      background: radial-gradient(circle at 75% 20%, rgba(255, 138, 48, 0.16) 0%, rgba(11, 13, 18, 0) 70%);
+    }
+    /* Hide scrollbar for neat horizontal badge chips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#F6F5F2] text-[#1D1E20] font-sans antialiased selection:bg-[#FF6B1A] selection:text-white">
+<!-- BEGIN: NavigationHeader -->
+<header class="sticky top-0 z-50 w-full glass-card border-b border-black/5 transition-all duration-300">
+<div class="max-w-[420px] mx-auto px-4 h-14 flex items-center justify-between">
+<!-- Brand Logo / Wordmark -->
+<a aria-label="JABEE Home" class="flex items-center gap-1.5 focus:outline-none" href="#">
+<span class="text-xl font-extrabold tracking-tight text-black">JABEE</span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF6B1A] -mb-1 inline-block"></span>
+</a>
+<!-- Compact CTA Pill Button -->
+<a class="inline-flex items-center justify-center bg-[#FF6B1A] active:bg-[#e0580c] text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-sm hover:shadow transition-transform active:scale-95 min-h-[34px]" href="#download-section">
+        Download App
+      </a>
+</div>
+<!-- Scroll indicator progress line -->
+<div class="h-[2px] bg-[#FF6B1A] w-0 transition-all duration-75" id="scrollProgress"></div>
+</header>
+<!-- END: NavigationHeader -->
+<!-- BEGIN: Scene1WeekdayMorning -->
+<section class="relative pt-6 pb-12 overflow-hidden bg-[#F6F5F2]" data-purpose="scene-weekday-morning">
+<div class="max-w-[390px] mx-auto px-5"><!-- Section Tag / Eyebrow -->
+<div class="glass-card rounded-2xl p-5 border border-white/80 shadow-lg mb-6 backdrop-blur-md">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-[3px] h-3.5 bg-[#FF6B1A] rounded-full inline-block"></span>
+<span class="text-[11px] font-bold tracking-wider uppercase text-neutral-500">WEEKDAY MORNING</span>
+</div>
+<!-- Main Heading -->
+<h1 class="text-[32px] leading-[1.12] font-black tracking-tight text-neutral-900 mb-3">
+        Every weekday, the same road to work.
+      </h1>
+<!-- Subtitle Description -->
+<p class="text-neutral-600 text-[14px] leading-relaxed mb-4">
+        Meet an everyday office professional. Bag on his shoulder, a long day ahead, and a ride to book.
+      </p>
+<!-- Routine Status Pill -->
+<div class="inline-flex items-center gap-2 bg-white/80 border border-neutral-200/70 px-3 py-1.5 rounded-full shadow-2xs backdrop-blur-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[11px] font-semibold tracking-wide text-neutral-700 uppercase">08:30 AM ROUTINE • DAILY OFFICE RUSH</span>
+</div>
+</div>
+<!-- Character 1 Visual Presentation -->
+<div class="relative w-full flex flex-col items-center justify-center pt-2">
+<div class="relative max-w-[260px] w-full">
+<img alt="Office professional ready for commute" class="w-full h-auto object-contain drop-shadow-xl" loading="eager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1w1bnfdzzvgcyz8s7K_XkF08-njXQZMzexgS5VP7a-BLVYtlojbvjYIhccI-4no3fIm3MwNia3GSBbjYy5EfGNgrzZYhhnNY1WS1XGoOl8hSx0HJuTLAjvWGK4WomwSlUf4OFetZKvlKevYof_2CbWAWLIOKBZ8w2iTobbzOI60AiVzo9K65ZY4Fz8jzFWaxkwelZUS2tiAE2VmuuYsltJuM4cAH9DyU6pzKQkQgZfBQWuB0j572wSwAwpMS_w1KKqA">
+</div>
+<!-- Status indicator under minifig -->
+<div class="mt-2 inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-neutral-200 px-2.5 py-1 rounded-full text-[10px] font-medium text-neutral-600">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="">Ready for commute</span>
+</div>
+</div></div>
+</section>
+<!-- END: Scene1WeekdayMorning -->
+<!-- BEGIN: Scene2SameJourney -->
+<section class="relative pt-12 pb-14 bg-gradient-to-b from-[#F6F5F2] via-[#CFCBC6] to-[#CFCBC6] transition-colors" data-purpose="scene-same-journey">
+<div class="max-w-[390px] mx-auto px-5">
+<!-- Character 2 Image Card with overlay context badge -->
+<div class="relative rounded-2xl overflow-hidden shadow-md bg-neutral-200 mb-6">
+<img alt="Professional looking out from balcony" class="w-full h-[320px] object-cover object-top" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3UasYKi9yhV9mRXNlleRcr79EnJ2_xksU2CW7Ksrh2JQZs7Cjwy8LQfC1wULQaztqAMHEx7T2lcqj1m3jSjMVL1lzc3jGjIsa4NQ5sv5rqXuyaWlYId-wk-FNu47LtvJoa4Nspa2JnuxWlIdW9zk5Yk5W5-NQ2QpeLvbbZFT-AXd79y05h1ep_7bjiZRlZzzrXr6T5KqFzS05DAMvaUCSBRz780YDO1RUFeyCMlmoDmYkNZ5KIR_SKQiVwTdRxygVyQ">
+<!-- Location badge overlay -->
+<div class="absolute top-3.5 left-3.5 bg-black/55 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-white/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+<span class="">Home → Tech Park (9.4 km)</span>
+</div>
+</div>
+<!-- Frosted Text Card -->
+<div class="glass-card rounded-2xl p-5 border border-white/80 shadow-lg backdrop-blur-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-[3px] h-3.5 bg-[#FF6B1A] rounded-full inline-block"></span>
+<span class="text-[10px] font-bold tracking-wider uppercase text-neutral-600">SAME JOURNEY. EVERY DAY.</span>
+</div>
+<h2 class="text-2xl font-black text-neutral-900 leading-snug mb-2.5">
+          Every morning, he books the same ride.
+        </h2>
+<p class="text-neutral-600 text-[13px] leading-relaxed mb-4">
+          Same pickup. Same drop. Same time. Yet he opens the app and does it all over again, five days a week.
+        </p>
+<!-- Commute regularity metric indicators -->
+<div class="pt-3 border-t border-neutral-200/80">
+<div class="flex items-center justify-between text-[10px] font-bold text-neutral-500 mb-1.5 uppercase tracking-wider">
+<span class="">5 Days Every Week</span>
+<span class="text-[#FF6B1A]">Zero Consistency</span>
+</div>
+<!-- 5 dashes indicator -->
+<div class="grid grid-cols-5 gap-1.5">
+<span class="h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="h-1.5 rounded-full bg-[#FF6B1A]"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Scene2SameJourney -->
+<!-- BEGIN: Scene3StressBegins -->
+<section class="relative pt-12 pb-16 bg-[#0B0D12] text-white spotlight-glow overflow-hidden" data-purpose="scene-stress-dark">
+<!-- Ambient top glow aura -->
+<div class="absolute -top-16 -right-16 w-56 h-56 bg-[#FF6B1A]/20 blur-3xl rounded-full pointer-events-none"></div>
+<div class="max-w-[390px] mx-auto px-5 relative z-10"><!-- Section Eyebrow & Problem Statement in Dark Glass Card -->
+<div class="dark-glass-card rounded-2xl p-5 border border-white/10 shadow-xl backdrop-blur-md mb-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-[3px] h-3.5 bg-[#FF6B1A] rounded-full inline-block"></span>
+<span class="text-[11px] font-bold tracking-wider uppercase text-[#FF8540]">THEN THE STRESS BEGINS</span>
+</div>
+<h2 class="text-[30px] font-black leading-[1.12] tracking-tight mb-3 text-white">
+        Prices jump.<br>Captains cancel.<br><span class="text-[#FF6B1A]">Time runs out.</span>
+</h2>
+<p class="text-neutral-400 text-[13.5px] leading-relaxed">
+        Sometimes the fare changes. Sometimes no captain accepts. Rides get cancelled again and again, and every cancellation costs minutes he doesn't have. The day starts with stress and a bad mood.
+      </p>
+</div>
+<!-- Character 3 Visual with Floating Interactive badges -->
+<div class="relative w-full rounded-2xl overflow-hidden border border-neutral-800 bg-[#14171E] shadow-2xl">
+<img alt="Anxious professional waiting in the dark" class="w-full h-[360px] object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEQO-CA6KonBgxSLJ0saNNjeu0jgsZy6B7n3Qitm3QaHyOAEavP6xrFncNb8VXx0MX-Dxdq3y1Dcao7YWcHRW8HLI34kLorCTSkBIOAfV8YlJTCSeUquQWcl1CYOSeLKjJXtSTjM8yZGHOqSJ0ozDuOXyiFkYOHQdXkurUnVXXWzMT_Rrkhp0BHzDg4KBe00Xb_PzOCBMKXU-4WSSn3qqz7z2xdmaeyLOprZeY2LWuULnLQ3I5wmY6YcOfjSvcpb6elw">
+<!-- Floating Badge 1: Fare surge -->
+<div class="absolute top-4 right-3 dark-glass-card border border-red-500/40 text-red-200 text-[11px] font-semibold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
+<span class="">Fare increased to $28.50</span>
+</div>
+<!-- Floating Badge 2: Searching -->
+<div class="absolute bottom-16 left-3 dark-glass-card border border-amber-500/30 text-amber-200 text-[11px] font-medium px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2 backdrop-blur-md">
+<svg class="w-3.5 h-3.5 animate-spin text-[#FF6B1A]" fill="none" viewBox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
+</svg>
+<span class="">Searching for captain...</span>
+</div>
+<!-- Floating Badge 3: Cancellation alert -->
+<div class="absolute bottom-4 right-3 dark-glass-card border border-red-500/40 text-red-300 text-[10.5px] font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+<span class="text-red-400">✕</span>
+<span class="">Ride cancelled by captain</span>
+</div>
+</div>
+<!-- Real-time commute panic tracker card -->
+<div class="mt-4 dark-glass-card rounded-xl p-3.5 border border-white/10 flex items-center justify-between backdrop-blur-md">
+<div class="flex items-center gap-2 text-[12px] text-neutral-300">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="">High demand in your area</span>
+</div>
+<span class="text-[11px] font-bold text-red-400 bg-red-900/40 px-2 py-0.5 rounded border border-red-800/40">+45% Surge</span>
+</div></div>
+</section>
+<!-- END: Scene3StressBegins -->
+<!-- BEGIN: Scene4WhatIf -->
+<section class="relative pt-12 pb-14 bg-gradient-to-b from-[#0B0D12] via-[#E7E3DB] to-[#F3F1EC] transition-colors" data-purpose="scene-what-if">
+<div class="max-w-[390px] mx-auto px-5">
+<!-- Character 4 Photo Card -->
+<div class="relative rounded-2xl overflow-hidden shadow-lg bg-white mb-6">
+<img alt="Professional relaxed in office holding coffee mug" class="w-full h-[280px] object-cover object-center" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbi3ec2B6haivbPXbldkl-DUvbY2xLFcAyPhDe3B-scvpYbOif2WFZJl72Aa4c8qBWDNFmb4gJxpWgNsIkVCzb1XmDoRu-zuKFY_FP2P-xmwfouVgVsU6pCztmdIV8scmWsq7ko4QU6Q0gjXb_tQoJ4HpsLeZAgtLEkRWvVfESHtKxosZvaVkXAis8Xn_x_qlTqjddLaNdSiV1EMFzi5QVpi6M0d_ymQRWYMF7Ktpbw_jOHIhPmywrB9Vq7RT_dYeZjQ">
+<!-- Captain arrived peace badge -->
+<div class="absolute bottom-3 left-3 glass-card text-neutral-800 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-emerald-500/40 shadow">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">Captain Rajesh arrived • 08:28 AM</span>
+</div>
+</div>
+<!-- Question & Relief Card -->
+<div class="glass-card rounded-2xl p-5 border border-white/80 shadow-lg backdrop-blur-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-[3px] h-3.5 bg-[#FF6B1A] rounded-full inline-block"></span>
+<span class="text-[10px] font-bold tracking-wider uppercase text-[#FF6B1A]">WHAT IF?</span>
+</div>
+<h2 class="text-2xl font-black text-neutral-900 leading-tight mb-2.5">
+          What if he never had to book again?
+        </h2>
+<p class="text-neutral-600 text-[13px] leading-relaxed mb-5">
+          A fixed captain. Ready at the same perfect time. The same fair price. Every single day. No headache. No stress. Just a good start to the day.
+        </p>
+<!-- 4 Key Value Chips Grid -->
+<div class="grid grid-cols-2 gap-2 text-[11px] font-semibold text-neutral-800">
+<div class="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-white/60 shadow-2xs px-2.5 py-2 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="">Fixed Daily Captain</span>
+</div>
+<div class="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-white/60 shadow-2xs px-2.5 py-2 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="">Zero Morning Surge</span>
+</div>
+<div class="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-white/60 shadow-2xs px-2.5 py-2 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="">Automated Dispatch</span>
+</div>
+<div class="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-white/60 shadow-2xs px-2.5 py-2 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FF6B1A]"></span>
+<span class="">Punctual Peace of Mind</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Scene4WhatIf -->
+<!-- BEGIN: TransformationSection -->
+<section class="pt-12 pb-14 bg-white border-t border-neutral-100" data-purpose="transformation-bike">
+<div class="max-w-[390px] mx-auto px-5">
+<div class="text-center mb-6">
+<span class="text-[10px] font-black tracking-widest uppercase text-[#FF6B1A] mb-1.5 inline-block">THE TRANSFORMATION</span>
+<h2 class="text-2xl font-black text-neutral-900 leading-snug tracking-tight mb-2">
+          Building effortless commutes brick by brick.
+        </h2>
+<p class="text-neutral-500 text-[13px] leading-relaxed max-w-[320px] mx-auto">
+          The same daily struggle turned into an engineered, reliable rhythm for the modern professional.
+        </p>
+</div>
+<!-- Lego Bike Disassembly to Assembly Graphic -->
+<div class="rounded-2xl border border-neutral-200/80 overflow-hidden bg-neutral-50/50 p-3 mb-6 shadow-sm">
+<img alt="Lego assembly from loose bricks into a road and sleek motorcycle" class="w-full h-auto object-contain rounded-xl" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGv-F55XhCXMLcs07E2QCa4V2lQ4wEspZgUuMO4fS8x22kFjwkaIgV6bFSYclArA0CDcXZTZT4GXiCIMRWruXvZAybAH71Sm_UJdKzRuWx_Nl6dc-i0ZVYO0vSsonDBR80jOzEFUTTViHFJcE2CeSKLc_6-fqjWv3EU7U2LZOai22JTAs2oHIbhoKOBxVQ3zrRXpK6FoyothImFPtT8dhWns1UX8WaNXXxy5n5pteKz_n2YO4Pk3LhlLsN6uagVSsY6Q">
+</div>
+<!-- 3 Progression Milestones for Mobile -->
+<div class="space-y-3.5">
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#FAF9F6] border border-neutral-200/70">
+<div class="w-[3px] h-9 bg-[#FF6B1A] rounded-full shrink-0 mt-0.5"></div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-neutral-900">SAME PIECES. DIFFERENT POSSIBILITIES.</h3>
+<p class="text-[12px] text-neutral-500 leading-snug mt-0.5">Every commuter has the same hours, roads, and transit needs. We rethink how those pieces connect.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#FAF9F6] border border-neutral-200/70">
+<div class="w-[3px] h-9 bg-[#FF6B1A] rounded-full shrink-0 mt-0.5"></div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-neutral-900">A ROAD TAKES SHAPE.</h3>
+<p class="text-[12px] text-neutral-500 leading-snug mt-0.5">Routes align. Predictable pickup corridors replace frantic app refreshes every single morning.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#FAF9F6] border border-neutral-200/70">
+<div class="w-[3px] h-9 bg-[#FF6B1A] rounded-full shrink-0 mt-0.5"></div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-neutral-900">MOVEMENT FINDS FORM.</h3>
+<p class="text-[12px] text-neutral-500 leading-snug mt-0.5">The JABEE bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TransformationSection -->
+<!-- BEGIN: BrandMilestoneCTA -->
+<section class="py-14 bg-gradient-to-b from-white to-[#F9F8F5] border-t border-neutral-100 text-center" data-purpose="brand-milestone-cta" id="download-section">
+<div class="max-w-[390px] mx-auto px-5 flex flex-col items-center">
+<!-- Big JABEE Wordmark -->
+<div class="flex items-baseline justify-center mb-2">
+<span class="text-4xl font-black tracking-tight text-neutral-900">JABEE</span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#FF6B1A] ml-0.5"></span>
+</div>
+<p class="text-neutral-900 font-extrabold text-[17px] mb-2 leading-snug">
+        Office professionals’ favourite ride booking app.
+      </p>
+<p class="text-neutral-500 text-[13px] leading-relaxed max-w-[320px] mb-6">
+        Our founder lived this problem every morning. So he built JABEE for everyone who makes the same commute. The JABEE team makes it stress-free for you.
+      </p>
+<!-- Primary Google Play CTA Button -->
+<a class="w-full max-w-[280px] bg-[#FF6B1A] hover:bg-[#F25A05] text-white py-3.5 px-6 rounded-full font-bold shadow-md shadow-[#FF6B1A]/20 flex items-center justify-center gap-3 transition-transform active:scale-95" href="#playstore">
+<svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+<path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7l-.1.1zm12.3 9.4l-2.4-2.4v-.2l2.4-2.4.1.1 2.8 1.6c.8.5.8 1.2 0 1.7l-2.9 1.6zm-1.8 1.8l-10.4 10.4c.3.1.7.1 1.2-.2l10.9-6.3-1.7-3.9zm0-2L5 2.8c-.5-.3-.9-.3-1.2-.2l10.4 10.4 1.7-2.1z"></path>
+</svg>
+<div class="text-left">
+<div class="text-[9px] uppercase tracking-wider leading-none text-white/80">AVAILABLE ON</div>
+<div class="text-sm font-extrabold leading-none mt-0.5">Get it on Google Play</div>
+</div>
+</a>
+<!-- Rating Credibility Note -->
+<div class="mt-3 flex items-center gap-1.5 text-neutral-600 text-[11px] font-semibold">
+<span class="text-amber-500">★</span>
+<span class="">4.9/5 from 12,000+ daily riders</span>
+</div>
+</div>
+</section>
+<!-- END: BrandMilestoneCTA -->
+<!-- BEGIN: TeamBehindJabee -->
+<section class="py-12 bg-white border-t border-neutral-100" data-purpose="team-section">
+<div class="max-w-[390px] mx-auto px-5"><div class="text-center mb-8">
+<span class="text-[10px] font-black tracking-widest uppercase text-[#FF6B1A] mb-1 inline-block">BEHIND THE HELMET</span>
+<h2 class="text-2xl font-black text-neutral-900 tracking-tight">The people behind JABEE</h2>
+<p class="text-neutral-500 text-[12px] mt-1 max-w-[280px] mx-auto">
+          A dedicated crew in Burdwan, West Bengal obsessed with bringing calm, joy, and punctuality to your everyday commute.
+        </p>
+</div>
+<!-- Founders -->
+<div class="mb-7">
+<div class="flex items-center gap-1.5 mb-3">
+<span class="w-2 h-2 rounded-full bg-[#FF6B1A]"></span>
+<span class="text-xs font-bold text-neutral-700 uppercase tracking-wide">FOUNDERS</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3.5 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-sm text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-xl mb-2 text-neutral-400 border border-white/60">
+              👤
+            </div>
+<div class="text-[13px] font-bold text-neutral-900 leading-tight">[Founder Name]</div>
+<div class="text-[10px] font-semibold text-[#FF6B1A] uppercase mt-0.5">Founder &amp; CEO</div>
+<p class="text-[10px] text-neutral-500 mt-1 leading-snug">Daily commuter turned mobility architect.</p>
+</div>
+<div class="p-3.5 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-sm text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-xl mb-2 text-neutral-400 border border-white/60">
+              👤
+            </div>
+<div class="text-[13px] font-bold text-neutral-900 leading-tight">[Co-Founder Name]</div>
+<div class="text-[10px] font-semibold text-[#FF6B1A] uppercase mt-0.5">Co-Founder &amp; COO</div>
+<p class="text-[10px] text-neutral-500 mt-1 leading-snug">Scaling captain network with empathy.</p>
+</div>
+</div>
+</div>
+<!-- Tech Team -->
+<div class="mb-7">
+<div class="flex items-center gap-1.5 mb-3">
+<span class="w-2 h-2 rounded-full bg-[#FF6B1A]"></span>
+<span class="text-xs font-bold text-neutral-700 uppercase tracking-wide">TECH TEAM</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="w-9 h-9 mx-auto rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-sm mb-1.5 text-neutral-400 border border-white/60">⚙️</div>
+<div class="text-[12px] font-bold text-neutral-900 leading-tight">[Tech Lead Name]</div>
+<div class="text-[9.5px] font-semibold text-[#FF6B1A] uppercase">Head of Engineering</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Route optimization &amp; reliable dispatch.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="w-9 h-9 mx-auto rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-sm mb-1.5 text-neutral-400 border border-white/60">📱</div>
+<div class="text-[12px] font-bold text-neutral-900 leading-tight">[Mobile Architect]</div>
+<div class="text-[9.5px] font-semibold text-[#FF6B1A] uppercase">Lead Android Developer</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Zero-lag ride tracking experience.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="w-9 h-9 mx-auto rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-sm mb-1.5 text-neutral-400 border border-white/60">🎨</div>
+<div class="text-[12px] font-bold text-neutral-900 leading-tight">[Product Designer]</div>
+<div class="text-[9.5px] font-semibold text-[#FF6B1A] uppercase">Lead Product Designer</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Crafting clutter-free ride journeys.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="w-9 h-9 mx-auto rounded-full bg-neutral-200/60 backdrop-blur-sm flex items-center justify-center text-sm mb-1.5 text-neutral-400 border border-white/60">☁️</div>
+<div class="text-[12px] font-bold text-neutral-900 leading-tight">[Backend Specialist]</div>
+<div class="text-[9.5px] font-semibold text-[#FF6B1A] uppercase">Infrastructure Lead</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">99.99% uptime for morning commutes.</p>
+</div>
+</div>
+</div>
+<!-- Marketing & Social Grid -->
+<div>
+<div class="flex items-center gap-1.5 mb-3">
+<span class="w-2 h-2 rounded-full bg-[#FF6B1A]"></span>
+<span class="text-xs font-bold text-neutral-700 uppercase tracking-wide">MARKETING &amp; COMMUNITY</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="text-[12px] font-bold text-neutral-900">[Growth Lead]</div>
+<div class="text-[9px] font-semibold text-[#FF6B1A] uppercase">Head of Growth</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Connecting office parks with Jabee fleets.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="text-[12px] font-bold text-neutral-900">[Brand Strategist]</div>
+<div class="text-[9px] font-semibold text-[#FF6B1A] uppercase">Brand Communications</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Championing stress-free morning stories.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="text-[12px] font-bold text-neutral-900">[Corporate Partner]</div>
+<div class="text-[9px] font-semibold text-[#FF6B1A] uppercase">B2B Mobility Lead</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Direct office subscription perks.</p>
+</div>
+<div class="p-3 rounded-xl border border-white/80 bg-white/80 backdrop-blur-md shadow-2xs text-center">
+<div class="text-[12px] font-bold text-neutral-900">[Community Head]</div>
+<div class="text-[9px] font-semibold text-[#FF6B1A] uppercase">Community &amp; Support</div>
+<p class="text-[9.5px] text-neutral-500 mt-1">Listening to commuter voices 24/7.</p>
+</div>
+</div>
+</div></div>
+</section>
+<!-- END: TeamBehindJabee -->
+<!-- BEGIN: CoreCapabilitiesFeatures -->
+<section class="py-14 bg-[#FAF9F6] border-t border-neutral-200/60" data-purpose="features-capabilities">
+<div class="max-w-[390px] mx-auto px-5">
+<!-- Section Header -->
+<div class="text-center mb-8">
+<span class="text-[10px] font-black tracking-widest uppercase text-[#FF6B1A] mb-1.5 inline-block">CORE CAPABILITIES</span>
+<h2 class="text-2xl font-black text-neutral-900 tracking-tight leading-snug">
+          Engineered for the corporate commute.
+        </h2>
+<p class="text-neutral-500 text-[12.5px] leading-relaxed mt-2 max-w-[310px] mx-auto">
+          Nine key pillars that transform everyday office travel from an erratic gamble into a dependable luxury.
+        </p>
+</div>
+<!-- 9 Feature Cards Stacked for Mobile Cleanliness -->
+<div class="space-y-3">
+<!-- Feature 1 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Fixed daily ride</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Book once, ride every weekday without ever opening the app to hail again.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Same captain, same time</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Meet the same trusted professional rider outside your gate at your exact scheduled minute.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Same fair price, no surprise surge</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Rain, festival, or peak hour — your monthly commute fare remains locked and strictly fair.</p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Scheduled pickups &amp; reminders</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Gentle automated alerts 10 minutes prior so you can finish your coffee without rushing.</p>
+</div>
+</div>
+<!-- Feature 5 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Live ride tracking</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">High-precision real-time GPS telemetry showing your dedicated bike approaching.</p>
+</div>
+</div>
+<!-- Feature 6 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Verified captains</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Every partner undergoes rigorous background checks, defensive ride testing, and ratings review.</p>
+</div>
+</div>
+<!-- Feature 7 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">In-app chat with your captain</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Instant one-tap direct messaging with masked phone numbers for absolute rider privacy.</p>
+</div>
+</div>
+<!-- Feature 8 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Easy payments: UPI, cash, cards</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">Automate autopay via UPI or corporate cards, or opt for seamless cash reconciliation.</p>
+</div>
+</div>
+<!-- Feature 9 -->
+<div class="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-[#FFF5EF] border border-[#FF6B1A]/20 flex items-center justify-center text-[#FF6B1A] shrink-0 font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="text-[14px] font-bold text-neutral-900 leading-tight">Ride history &amp; trip sharing</h3>
+<p class="text-[12px] text-neutral-500 mt-1 leading-snug">One-click monthly expense statements and shareable live links for family tracking.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CoreCapabilitiesFeatures -->
+<!-- BEGIN: MobileFooter -->
+<footer class="bg-[#111111] text-white pt-10 pb-8 border-t border-neutral-800" data-purpose="mobile-footer">
+<div class="max-w-[390px] mx-auto px-5">
+<!-- Footer Brand Info -->
+<div class="mb-6">
+<div class="flex items-center gap-1.5 mb-2">
+<span class="text-xl font-black tracking-tight text-white">JABEE</span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#FF6B1A] -mb-1"></span>
+</div>
+<p class="text-[12px] text-neutral-400 leading-relaxed">
+          Office professionals’ favourite ride booking app. Reinventing morning commute fiction with predictable daily motorcycle captains for office-goers.
+        </p>
+</div>
+<!-- Quick Links Grid -->
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-neutral-800/80 text-[12px] mb-6">
+<div>
+<span class="text-[10px] uppercase font-bold text-[#FF6B1A] tracking-wider block mb-2">QUICK LINKS</span>
+<ul class="space-y-1.5 text-neutral-400">
+<li class=""><a class="hover:text-white transition-colors" href="#">Story</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Team</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Features</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#">Download</a></li>
+</ul>
+</div>
+<div>
+<span class="text-[10px] uppercase font-bold text-[#FF6B1A] tracking-wider block mb-2">GET THE APP</span>
+<a class="inline-block mb-3" href="#playstore">
+<span class="inline-flex items-center gap-1.5 bg-neutral-900 border border-neutral-700 px-3 py-1.5 rounded-lg text-neutral-200 text-[10px] font-semibold">
+<span class="text-xs">▶</span> Google Play
+            </span>
+</a>
+<div class="text-[11px] text-neutral-400">Contact Us:</div>
+<a class="text-[11px] text-neutral-200 hover:text-[#FF6B1A] transition-colors" href="mailto:support@jabee.in">support@jabee.in</a>
+</div>
+</div>
+<!-- Social Icons & Legal -->
+<div class="flex items-center justify-between text-neutral-400 text-xs mb-6">
+<span class="">Connect:</span>
+<div class="flex items-center gap-4 text-sm">
+<a aria-label="Instagram" class="hover:text-[#FF6B1A]" href="#">📸</a>
+<a aria-label="LinkedIn" class="hover:text-[#FF6B1A]" href="#">💼</a>
+<a aria-label="X" class="hover:text-[#FF6B1A]" href="#">✖</a>
+<a aria-label="YouTube" class="hover:text-[#FF6B1A]" href="#">▶</a>
+</div>
+</div>
+<!-- Copyright & Policies -->
+<div class="text-[10.5px] text-neutral-500 space-y-2 pt-2 border-t border-neutral-800/60">
+<div class="">© 2026 JABEE, Burdwan, West Bengal. All rights reserved.</div>
+<div class="flex flex-wrap gap-x-3 gap-y-1 text-neutral-400">
+<a class="hover:underline" href="#">Privacy Policy</a>
+<span class="">•</span>
+<a class="hover:underline" href="#">Terms of Service</a>
+<span class="">•</span>
+<a class="hover:underline" href="#">Captain Code of Conduct</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MobileFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="scroll-progress-handler">
+    // Update thin top orange progress bar on scroll
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('scrollProgress');
+      if (bar) {
+        bar.style.width = scrolled + '%';
+      }
+    });
+  </script>
+<!-- END: InteractiveScripts -->
+
+
+</body></html>
