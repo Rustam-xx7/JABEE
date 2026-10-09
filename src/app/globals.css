@@ -83,3 +83,25 @@
   mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
   -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
 }
+
+/* Glass card utilities for mobile view */
+.glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark-glass-card {
+  background: rgba(18, 21, 28, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.spotlight-glow {
+  background: radial-gradient(circle at 75% 20%, rgba(255, 138, 48, 0.16) 0%, rgba(11, 13, 18, 0) 70%);
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

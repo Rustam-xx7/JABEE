@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const TOTAL_BIKE_FRAMES = 200;
 
-export default function BikeScrollCanvas({ isLoading }) {
+export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-container' }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -77,8 +77,8 @@ export default function BikeScrollCanvas({ isLoading }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    const targetElement = document.getElementById(triggerId) || containerRef.current || canvas;
+    if (!canvas || !targetElement) return;
 
     const ctx = canvas.getContext('2d');
     const images = imagesRef.current;
@@ -90,11 +90,11 @@ export default function BikeScrollCanvas({ isLoading }) {
 
     const frameObj = { currentFrame: 0 };
 
-    // Pin the bike canvas container precisely when it reaches the screen center
+    // Pin the entire section so top header and bottom cards stay fixed seamlessly without empty gaps
     const trigger = ScrollTrigger.create({
-      trigger: container,
-      start: 'center center',
-      end: '+=1500',
+      trigger: targetElement,
+      start: 'top top',
+      end: '+=1300',
       pin: true,
       pinSpacing: true,
       scrub: 0.4,
@@ -121,23 +121,23 @@ export default function BikeScrollCanvas({ isLoading }) {
       trigger.kill();
       clearTimeout(refreshTimer);
     };
-  }, [isLoading]);
+  }, [isLoading, triggerId]);
 
   return (
-    <div ref={containerRef} className="w-full flex justify-center items-center py-2 relative z-10">
+    <div ref={containerRef} className="w-full flex justify-center items-center py-1 sm:py-2 relative z-10">
       <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center">
         {/* Canvas for rendering 200 bike animation frames */}
         <canvas
           ref={canvasRef}
           width={1280}
           height={720}
-          className="w-full h-auto max-h-[650px] object-contain rounded-2xl drop-shadow-2xl"
+          className="w-full h-auto max-h-[650px] object-contain rounded-2xl drop-shadow-2xl scale-[1.04] sm:scale-100 origin-center transition-transform"
         />
 
         {/* Dynamic progress badge */}
-        <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg border border-neutral-200/80 flex items-center gap-2.5 z-20">
-          <div className="w-2.5 h-2.5 rounded-full bg-jabee-orange animate-pulse" />
-          <span className="text-xs font-bold text-jabee-black tracking-wide">
+        <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-lg border border-neutral-200/80 flex items-center gap-2 z-20">
+          <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-jabee-orange animate-pulse" />
+          <span className="text-[10px] sm:text-xs font-bold text-jabee-black tracking-wide">
             JABEE Fleet Transformation
           </span>
         </div>
