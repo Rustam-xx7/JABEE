@@ -9,9 +9,9 @@ const LOGO = { folder: 'logoAnimation', count: 150 };
 // What must be ready before the site is revealed. Keep this list SHORT:
 // only what the user sees in the first screen or two. Bike frames are NOT here;
 // they load in the background after the loader (see BikeScrollCanvas notes).
-const CRITICAL = [LOGO, { folder: 'character1Animation', count: 100 }];
+const CRITICAL = [LOGO, { folder: 'character1Animation', count: 150 }];
 
-const MIN_TIME = 1500;   // never flash the loader away instantly on fast connections
+const MIN_TIME = 2500;   // never flash the loader away instantly on fast connections
 const MAX_TIME = 10000;  // safety net: on a terrible connection, let the user in anyway
 const EXIT_MS = 700;     // matches the expand/fade transition below
 

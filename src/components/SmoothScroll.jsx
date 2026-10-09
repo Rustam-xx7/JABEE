@@ -11,7 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // lerp          -> mouse wheel / trackpad
 // syncTouchLerp -> phone/tablet glide AFTER you lift your finger (while dragging it follows 1:1)
 const NORMAL = { lerp: 0.12, syncTouchLerp: 0.16 };   // ordinary sections: light smoothing
-const ANIMATION = { lerp: 0.07, syncTouchLerp: 0.08 }; // pinned frame-animation sections: extra smooth
+const ANIMATION = { lerp: 0.07, syncTouchLerp: 0.06 }; // pinned frame-animation sections: extra smooth
 const SMOOTH_TOUCH = true; // set false to give phones/tablets native scrolling again
 
 export default function SmoothScroll({ isLoading }) {

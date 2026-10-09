@@ -9,7 +9,7 @@ import { createFrameEaser } from '../hooks/frameEaser';
 
 const FRAME_EASE = 0.18; // frame glide: 0.1 = floatier, 0.3 = snappier
 const FOLDER = 'character1Animation';
-const TOTAL_CHARACTER_FRAMES = 100;
+const TOTAL_CHARACTER_FRAMES = 150;
 
 function drawFrame(ctx, canvas, img) {
   if (!ctx || !canvas || !img || img.naturalWidth === 0) return;
@@ -94,7 +94,7 @@ export default function Character1ScrollCanvas({ isLoading, triggerId = 'story' 
   return (
     <div className="w-full flex justify-center items-center py-2 relative z-10">
       <div className="relative max-h-[620px] w-full flex items-center justify-center">
-        {/* Canvas for rendering 100 character animation frames with blend mode to seamlessly fit background */}
+        {/* Canvas for rendering 150 character animation frames with blend mode to seamlessly fit background */}
         <canvas
           ref={canvasRef}
           width={1280}
