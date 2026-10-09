@@ -5,6 +5,7 @@ import Image from 'next/image';
 import LoadingScreen from '../components/LoadingScreen';
 import Character1ScrollCanvas from '../components/Character1ScrollCanvas';
 import BikeScrollCanvas from '../components/BikeScrollCanvas';
+import SmoothScroll from '../components/SmoothScroll';
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -80,6 +81,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#F6F5F2] text-[#111111]">
       {/* 5-SECOND INTRO LOGO ANIMATION LOADING SCREEN */}
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <SmoothScroll isLoading={isLoading} />
 
       {/* TOP SCROLL PROGRESS BAR */}
       <div className="fixed top-0 left-0 w-full h-[3px] z-50 pointer-events-none" id="scroll-progress-container">

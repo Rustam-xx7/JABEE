@@ -5,7 +5,9 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useFrameSequence, nearestLoaded } from '../hooks/useFrameSequence';
+import { createFrameEaser } from '../hooks/frameEaser';
 
+const FRAME_EASE = 0.18; // frame glide: 0.1 = floatier, 0.3 = snappier
 const FOLDER = 'bikeAnimation';
 const TOTAL_BIKE_FRAMES = 200;
 
@@ -64,25 +66,23 @@ export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-c
 
     draw(0);
 
+    // The displayed frame eases toward the scroll position (smooth on mobile/tablet too)
+    const easer = createFrameEaser({ ease: FRAME_EASE, onFrame: draw });
+
     const trigger = ScrollTrigger.create({
       trigger: targetElement,
       start: 'top top',
       end: '+=1300',
       pin: true,
       pinSpacing: true,
-      scrub: 0.4,
-      onUpdate: (self) => {
-        const frameIndex = Math.min(
-          TOTAL_BIKE_FRAMES - 1,
-          Math.floor(self.progress * (TOTAL_BIKE_FRAMES - 1))
-        );
-        if (frameIndex !== currentFrameRef.current) draw(frameIndex);
-      },
+      scrub: true, // smoothing is handled by Lenis + the frame easer, not by GSAP
+      onUpdate: (self) => easer.setTarget(self.progress * (TOTAL_BIKE_FRAMES - 1)),
     });
 
     const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
+      easer.kill();
       trigger.kill();
       clearTimeout(refreshTimer);
       redrawRef.current = null;

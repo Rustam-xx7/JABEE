@@ -5,9 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
   body {
     background-color: #F6F5F2;
     color: #111111;
