@@ -136,7 +136,7 @@ export default function Character1ScrollCanvas({ isLoading, triggerId = 'story' 
         {/* Floating status badge next to character */}
         <div className="absolute bottom-6 right-2 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-soft border border-white/60 flex items-center gap-3 animate-float-1 z-20">
           <div className="w-2.5 h-2.5 rounded-full bg-jabee-orange" />
-          <span className="text-xs font-semibold text-jabee-black">Ready for commute</span>
+          <span className="text-xs font-semibold text-jabee-black">Scroll Down to commute</span>
         </div>
       </div>
     </div>
