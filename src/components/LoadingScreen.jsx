@@ -1,121 +1,104 @@
 'use client';
+// Replaces src/components/LoadingScreen.jsx (same props: onComplete)
 
 import React, { useEffect, useRef, useState } from 'react';
+import { loadSequence, nearestLoaded } from '../hooks/useFrameSequence';
 
-const TOTAL_FRAMES = 150;
-const ANIMATION_DURATION = 5200; // 4.2 seconds for frame playback
-const TOTAL_LOADER_TIME = 5400;  // 5.0 seconds total before unmount
+const LOGO = { folder: 'logoAnimation', count: 150 };
+
+// What must be ready before the site is revealed. Keep this list SHORT:
+// only what the user sees in the first screen or two. Bike frames are NOT here;
+// they load in the background after the loader (see BikeScrollCanvas notes).
+const CRITICAL = [LOGO, { folder: 'character1Animation', count: 100 }];
+
+const MIN_TIME = 1500;   // never flash the loader away instantly on fast connections
+const MAX_TIME = 10000;  // safety net: on a terrible connection, let the user in anyway
+const EXIT_MS = 700;     // matches the expand/fade transition below
 
 export default function LoadingScreen({ onComplete }) {
   const canvasRef = useRef(null);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete; // always latest, without re-running the effect
+
   const [progress, setProgress] = useState(0);
   const [isExpanding, setIsExpanding] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const framesRef = useRef([]);
 
   useEffect(() => {
-    // Lock scroll during loading
     document.body.style.overflow = 'hidden';
 
-    // Array to store preloaded Image objects
-    const loadedImages = [];
-    for (let i = 3; i <= TOTAL_FRAMES; i++) {
-      const pad = String(i).padStart(3, '0');
-      const img = new Image();
-      img.src = `/logoAnimation/ezgif-frame-${pad}.png`;
-      loadedImages.push(img);
-    }
-    framesRef.current = loadedImages;
+    // ---- 1. Real progress: fraction of critical frames actually downloaded ----
+    const total = CRITICAL.reduce((s, c) => s + c.count, 0);
+    const loadedByFolder = {};
+    let real = 0; // 0..1
+    const entries = CRITICAL.map(({ folder, count }) => {
+      loadedByFolder[folder] = 0;
+      return loadSequence(folder, count, (fraction) => {
+        loadedByFolder[folder] = fraction * count;
+        real = Object.values(loadedByFolder).reduce((a, b) => a + b, 0) / total;
+      });
+    });
+    const logoFrames = entries[0].frames;
 
+    // ---- 2. Draw loop: eases the bar toward real progress, scrubs the logo with it ----
     const canvas = canvasRef.current;
-    if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    const start = performance.now();
+    let shown = 0;
+    let lastPct = -1;
+    let finished = false;
+    let raf;
+    let exitTimer;
 
-    const startTime = performance.now();
-    let animationFrameId;
-    let lastDrawnFrame = -1;
-
-    const render = (now) => {
-      const elapsed = now - startTime;
-
-      // Normalize time from 0 to 1 over ANIMATION_DURATION
-      const normTime = Math.min(1, elapsed / ANIMATION_DURATION);
-      const currentProgress = Math.floor(normTime * 100);
-      setProgress(currentProgress);
-
-      // Determine frame index (0 to 149)
-      const targetFrameIndex = Math.min(TOTAL_FRAMES - 1, Math.floor(normTime * TOTAL_FRAMES));
-
-      // Find the best available frame (target or nearest preloaded frame)
-      let activeImg = loadedImages[targetFrameIndex];
-      if (!activeImg || !activeImg.complete || activeImg.naturalWidth === 0) {
-        // Fallback to latest available preloaded frame
-        for (let idx = targetFrameIndex; idx >= 0; idx--) {
-          if (loadedImages[idx] && loadedImages[idx].complete && loadedImages[idx].naturalWidth > 0) {
-            activeImg = loadedImages[idx];
-            break;
-          }
-        }
-      }
-
-      // Draw onto canvas if we have a valid image frame
-      if (activeImg && activeImg.complete && activeImg.naturalWidth > 0) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const canvasRatio = canvas.width / canvas.height;
-        const imgRatio = activeImg.naturalWidth / activeImg.naturalHeight;
-
-        let drawW, drawH, drawX, drawY;
-        if (imgRatio > canvasRatio) {
-          drawW = canvas.width;
-          drawH = canvas.width / imgRatio;
-          drawX = 0;
-          drawY = (canvas.height - drawH) / 2;
-        } else {
-          drawH = canvas.height;
-          drawW = canvas.height * imgRatio;
-          drawX = (canvas.width - drawW) / 2;
-          drawY = 0;
-        }
-
-        ctx.drawImage(activeImg, drawX, drawY, drawW, drawH);
-      }
-
-      // Stage 1: At 4.2s, trigger expand-disappear animation
-      if (elapsed >= ANIMATION_DURATION && !isExpanding) {
-        setIsExpanding(true);
-      }
-
-      // Stage 2: At 5.0s, finish loading screen
-      if (elapsed < TOTAL_LOADER_TIME) {
-        animationFrameId = requestAnimationFrame(render);
-      } else {
-        setIsHidden(true);
-        document.body.style.overflow = '';
-        if (onComplete) onComplete();
-      }
+    const draw = (img) => {
+      if (!img) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cr = canvas.width / canvas.height;
+      const ir = img.naturalWidth / img.naturalHeight;
+      let w, h, x, y;
+      if (ir > cr) { w = canvas.width; h = w / ir; x = 0; y = (canvas.height - h) / 2; }
+      else { h = canvas.height; w = h * ir; y = 0; x = (canvas.width - w) / 2; }
+      ctx.drawImage(img, x, y, w, h);
     };
 
-    animationFrameId = requestAnimationFrame(render);
-
-    // Safety timers
-    const expandTimer = setTimeout(() => {
-      setIsExpanding(true);
-    }, ANIMATION_DURATION);
-
-    const completeTimer = setTimeout(() => {
+    const finish = () => {
       setIsHidden(true);
       document.body.style.overflow = '';
-      if (onComplete) onComplete();
-    }, TOTAL_LOADER_TIME);
+      onCompleteRef.current?.();
+    };
+
+    const tick = (now) => {
+      const elapsed = now - start;
+
+      shown += (real - shown) * 0.12;                 // smooth, never jumps
+      if (real >= 1 && 1 - shown < 0.002) shown = 1;  // snap the last sliver
+      const display = Math.min(shown, elapsed / MIN_TIME, 1); // honour MIN_TIME
+
+      // logo animation is driven by progress, so it plays exactly as fast as loading
+      const idx = Math.min(LOGO.count - 1, Math.floor(display * LOGO.count));
+      draw(nearestLoaded(logoFrames, idx));
+
+      const pct = Math.floor(display * 100);
+      if (pct !== lastPct) { lastPct = pct; setProgress(pct); }
+
+      if (!finished && (display >= 1 || elapsed > MAX_TIME)) {
+        finished = true;
+        setProgress(100);
+        setIsExpanding(true);
+        exitTimer = setTimeout(finish, EXIT_MS);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      clearTimeout(expandTimer);
-      clearTimeout(completeTimer);
+      cancelAnimationFrame(raf);
+      clearTimeout(exitTimer);
       document.body.style.overflow = '';
     };
-  }, [onComplete]);
+  }, []); // runs once; onComplete is read through the ref
 
   if (isHidden) return null;
 
@@ -127,14 +110,12 @@ export default function LoadingScreen({ onComplete }) {
           : 'scale-100 opacity-100'
       }`}
       style={{
-        transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out, filter 0.8s ease-out',
+        transition: `transform ${EXIT_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${EXIT_MS}ms ease-out, filter ${EXIT_MS}ms ease-out`,
         willChange: 'transform, opacity, filter',
       }}
     >
-      {/* Soft background ambient glow */}
       <div className="absolute w-[600px] h-[600px] bg-orange-100/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
 
-      {/* Frame Canvas with default poster fallback */}
       <div className="relative w-full max-w-2xl aspect-video flex items-center justify-center p-4">
         <canvas
           ref={canvasRef}
@@ -144,7 +125,6 @@ export default function LoadingScreen({ onComplete }) {
         />
       </div>
 
-      {/* Sleek Loader Bar & Details */}
       <div className="flex flex-col items-center gap-3 mt-4 z-10 w-full max-w-xs px-6">
         <div className="w-full h-2 bg-neutral-200/80 rounded-full overflow-hidden p-0.5 border border-neutral-300/50 shadow-inner">
           <div
@@ -152,7 +132,6 @@ export default function LoadingScreen({ onComplete }) {
             style={{ width: `${progress}%` }}
           />
         </div>
-
         <div className="flex items-center justify-between w-full text-xs font-semibold text-neutral-600 tracking-wider font-display">
           <span className="uppercase text-[10px] tracking-[0.2em] text-jabee-black flex items-center gap-2 font-bold">
             <span className="w-2 h-2 rounded-full bg-jabee-orange animate-ping" />

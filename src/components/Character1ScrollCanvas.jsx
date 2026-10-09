@@ -1,74 +1,45 @@
 'use client';
+// Replaces src/components/Character1ScrollCanvas.jsx
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useFrameSequence, nearestLoaded } from '../hooks/useFrameSequence';
 
+const FOLDER = 'character1Animation';
 const TOTAL_CHARACTER_FRAMES = 100;
+
+function drawFrame(ctx, canvas, img) {
+  if (!ctx || !canvas || !img || img.naturalWidth === 0) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const canvasRatio = canvas.width / canvas.height;
+  const imgRatio = img.naturalWidth / img.naturalHeight;
+
+  let drawW, drawH, drawX, drawY;
+  if (imgRatio > canvasRatio) {
+    drawW = canvas.width;
+    drawH = canvas.width / imgRatio;
+    drawX = 0;
+    drawY = (canvas.height - drawH) / 2;
+  } else {
+    drawH = canvas.height;
+    drawW = canvas.height * imgRatio;
+    drawX = (canvas.width - drawW) / 2;
+    drawY = 0;
+  }
+  ctx.drawImage(img, drawX, drawY, drawW, drawH);
+}
 
 export default function Character1ScrollCanvas({ isLoading, triggerId = 'story' }) {
   const canvasRef = useRef(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const imagesRef = useRef([]);
+  const currentFrameRef = useRef(0);
+  const redrawRef = useRef(null);
 
-  useEffect(() => {
-    // Preload all 100 frames of character1Animation
-    const images = [];
-    let loadedCount = 0;
-
-    for (let i = 1; i <= TOTAL_CHARACTER_FRAMES; i++) {
-      const pad = String(i).padStart(3, '0');
-      const img = new Image();
-      img.src = `/character1Animation/ezgif-frame-${pad}.png`;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === TOTAL_CHARACTER_FRAMES) {
-          setImagesLoaded(true);
-        }
-      };
-      images.push(img);
-    }
-    imagesRef.current = images;
-
-    // Render frame 1 immediately on initial load
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      const firstImg = images[0];
-      firstImg.onload = () => {
-        setImagesLoaded(true);
-        drawFrame(ctx, canvas, firstImg);
-      };
-      if (firstImg.complete && firstImg.naturalWidth > 0) {
-        drawFrame(ctx, canvas, firstImg);
-      }
-    }
-  }, []);
-
-  const drawFrame = (ctx, canvas, img) => {
-    if (!ctx || !canvas || !img || !img.complete || img.naturalWidth === 0) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const canvasRatio = canvas.width / canvas.height;
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-
-    let drawW, drawH, drawX, drawY;
-
-    if (imgRatio > canvasRatio) {
-      drawW = canvas.width;
-      drawH = canvas.width / imgRatio;
-      drawX = 0;
-      drawY = (canvas.height - drawH) / 2;
-    } else {
-      drawH = canvas.height;
-      drawW = canvas.height * imgRatio;
-      drawX = (canvas.width - drawW) / 2;
-      drawY = 0;
-    }
-
-    ctx.drawImage(img, drawX, drawY, drawW, drawH);
-  };
+  // These frames are also in LoadingScreen's critical list, so by the time the loader
+  // finishes they are already in the shared cache: this call costs nothing extra.
+  const { framesRef, ready } = useFrameSequence(FOLDER, TOTAL_CHARACTER_FRAMES);
 
   useEffect(() => {
     if (isLoading) return;
@@ -80,14 +51,14 @@ export default function Character1ScrollCanvas({ isLoading, triggerId = 'story' 
     if (!canvas || !targetElement) return;
 
     const ctx = canvas.getContext('2d');
-    const images = imagesRef.current;
 
-    // Draw initial frame 0
-    if (images[0] && images[0].complete) {
-      drawFrame(ctx, canvas, images[0]);
-    }
+    const draw = (index) => {
+      currentFrameRef.current = index;
+      drawFrame(ctx, canvas, nearestLoaded(framesRef.current, index));
+    };
+    redrawRef.current = () => draw(currentFrameRef.current);
 
-    const frameObj = { currentFrame: 0 };
+    draw(0);
 
     // Pin the entire story section so text stays fixed while character animates
     const trigger = ScrollTrigger.create({
@@ -102,25 +73,23 @@ export default function Character1ScrollCanvas({ isLoading, triggerId = 'story' 
           TOTAL_CHARACTER_FRAMES - 1,
           Math.floor(self.progress * (TOTAL_CHARACTER_FRAMES - 1))
         );
-        if (frameObj.currentFrame !== frameIndex) {
-          frameObj.currentFrame = frameIndex;
-          const targetImg = images[frameIndex];
-          if (targetImg) {
-            drawFrame(ctx, canvas, targetImg);
-          }
-        }
+        if (frameIndex !== currentFrameRef.current) draw(frameIndex);
       },
     });
 
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 250);
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
       trigger.kill();
       clearTimeout(refreshTimer);
+      redrawRef.current = null;
     };
-  }, [isLoading, triggerId]);
+  }, [isLoading, triggerId, framesRef]);
+
+  useEffect(() => {
+    if (!ready) return;
+    redrawRef.current?.();
+  }, [ready]);
 
   return (
     <div className="w-full flex justify-center items-center py-2 relative z-10">

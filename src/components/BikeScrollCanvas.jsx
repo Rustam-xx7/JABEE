@@ -1,76 +1,49 @@
 'use client';
+// Replaces src/components/BikeScrollCanvas.jsx
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useFrameSequence, nearestLoaded } from '../hooks/useFrameSequence';
 
+const FOLDER = 'bikeAnimation';
 const TOTAL_BIKE_FRAMES = 200;
+
+// "contain" fit, same as before; now a plain function outside the component
+function drawFrame(ctx, canvas, img) {
+  if (!ctx || !canvas || !img || img.naturalWidth === 0) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const canvasRatio = canvas.width / canvas.height;
+  const imgRatio = img.naturalWidth / img.naturalHeight;
+
+  let drawW, drawH, drawX, drawY;
+  if (imgRatio > canvasRatio) {
+    drawW = canvas.width;
+    drawH = canvas.width / imgRatio;
+    drawX = 0;
+    drawY = (canvas.height - drawH) / 2;
+  } else {
+    drawH = canvas.height;
+    drawW = canvas.height * imgRatio;
+    drawX = (canvas.width - drawW) / 2;
+    drawY = 0;
+  }
+  ctx.drawImage(img, drawX, drawY, drawW, drawH);
+}
 
 export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-container' }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const imagesRef = useRef([]);
+  const currentFrameRef = useRef(0);
+  const redrawRef = useRef(null);
 
-  useEffect(() => {
-    // Preload all 200 frames of bikeAnimation
-    const images = [];
-    let loadedCount = 0;
+  // Bike frames are NOT needed for the first screen, so they start downloading only once
+  // the loader has finished (eager: !isLoading) and load in the background.
+  const { framesRef, ready } = useFrameSequence(FOLDER, TOTAL_BIKE_FRAMES, { eager: !isLoading });
 
-    for (let i = 1; i <= TOTAL_BIKE_FRAMES; i++) {
-      const pad = String(i).padStart(3, '0');
-      const img = new Image();
-      img.src = `/bikeAnimation/ezgif-frame-${pad}.png`;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === TOTAL_BIKE_FRAMES) {
-          setImagesLoaded(true);
-        }
-      };
-      images.push(img);
-    }
-    imagesRef.current = images;
-
-    // Render frame 1 immediately as soon as ready
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      const firstImg = images[0];
-      firstImg.onload = () => {
-        setImagesLoaded(true);
-        drawFrame(ctx, canvas, firstImg);
-      };
-      if (firstImg.complete && firstImg.naturalWidth > 0) {
-        drawFrame(ctx, canvas, firstImg);
-      }
-    }
-  }, []);
-
-  const drawFrame = (ctx, canvas, img) => {
-    if (!ctx || !canvas || !img || !img.complete || img.naturalWidth === 0) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const canvasRatio = canvas.width / canvas.height;
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-
-    let drawW, drawH, drawX, drawY;
-
-    if (imgRatio > canvasRatio) {
-      drawW = canvas.width;
-      drawH = canvas.width / imgRatio;
-      drawX = 0;
-      drawY = (canvas.height - drawH) / 2;
-    } else {
-      drawH = canvas.height;
-      drawW = canvas.height * imgRatio;
-      drawX = (canvas.width - drawW) / 2;
-      drawY = 0;
-    }
-
-    ctx.drawImage(img, drawX, drawY, drawW, drawH);
-  };
-
+  // --- ScrollTrigger: created once the loader is gone ---
   useEffect(() => {
     if (isLoading) return;
 
@@ -81,16 +54,16 @@ export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-c
     if (!canvas || !targetElement) return;
 
     const ctx = canvas.getContext('2d');
-    const images = imagesRef.current;
 
-    // Draw initial frame 0
-    if (images[0] && images[0].complete) {
-      drawFrame(ctx, canvas, images[0]);
-    }
+    // Draw the closest frame that has actually loaded, never a blank canvas.
+    const draw = (index) => {
+      currentFrameRef.current = index;
+      drawFrame(ctx, canvas, nearestLoaded(framesRef.current, index));
+    };
+    redrawRef.current = () => draw(currentFrameRef.current);
 
-    const frameObj = { currentFrame: 0 };
+    draw(0);
 
-    // Pin the entire section so top header and bottom cards stay fixed seamlessly without empty gaps
     const trigger = ScrollTrigger.create({
       trigger: targetElement,
       start: 'top top',
@@ -103,25 +76,25 @@ export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-c
           TOTAL_BIKE_FRAMES - 1,
           Math.floor(self.progress * (TOTAL_BIKE_FRAMES - 1))
         );
-        if (frameObj.currentFrame !== frameIndex) {
-          frameObj.currentFrame = frameIndex;
-          const targetImg = images[frameIndex];
-          if (targetImg) {
-            drawFrame(ctx, canvas, targetImg);
-          }
-        }
+        if (frameIndex !== currentFrameRef.current) draw(frameIndex);
       },
     });
 
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 250);
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
       trigger.kill();
       clearTimeout(refreshTimer);
+      redrawRef.current = null;
     };
-  }, [isLoading, triggerId]);
+  }, [isLoading, triggerId, framesRef]);
+
+  // --- When every frame has arrived: repaint the current frame at full accuracy ---
+  useEffect(() => {
+    if (!ready) return;
+    redrawRef.current?.();
+    ScrollTrigger.refresh();
+  }, [ready]);
 
   return (
     <div ref={containerRef} className="w-full flex justify-center items-center py-1 sm:py-2 relative z-10">

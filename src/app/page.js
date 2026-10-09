@@ -284,10 +284,10 @@ export default function Home() {
       </section>
 
       {/* MOBILE VIEW */}
-      <section className="block lg:hidden relative pt-10 pb-12 bg-gradient-to-b from-[#F6F5F2] via-[#CFCBC6] to-[#CFCBC6]" data-nav-mode="dark">
+      <section className="block lg:hidden relative pt-10 pb-12 bg-[#CFCBC6]" data-nav-mode="dark">
         <div className="max-w-[390px] mx-auto px-4">
           <div className="relative rounded-2xl overflow-hidden shadow-md bg-neutral-200 mb-5">
-            <img alt="Professional looking out from balcony" className="w-full h-[300px] object-cover object-top" src="/character2.jpg" />
+            <img alt="Professional looking out from balcony" className="w-full h-[460px] object-cover object-top" src="/character2.jpg" />
             <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10.5px] font-medium px-3 py-1 rounded-full flex items-center gap-1.5 border border-white/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               <span>Home → Tech Park (9.4 km)</span>
@@ -397,9 +397,9 @@ export default function Home() {
       </section>
 
       {/* MOBILE VIEW */}
-      <section className="block lg:hidden relative pt-10 pb-14 bg-[#0B0D12] text-white spotlight-glow overflow-hidden" data-nav-mode="light">
+      <section className="block lg:hidden relative pt-10 pb-12 bg-[#CFCBC6]" data-nav-mode="dark">
         <div className="max-w-[390px] mx-auto px-4 relative z-10">
-          <div className="dark-glass-card rounded-2xl p-5 border border-white/10 shadow-xl backdrop-blur-md mb-5">
+          <div className="bg-[#12141A]/95 backdrop-blur-md rounded-2xl p-5 border border-black/15 shadow-xl mb-5 text-white">
             <div className="flex items-center gap-2 mb-2.5">
               <span className="w-[3px] h-3.5 bg-jabee-orange rounded-full inline-block"></span>
               <span className="text-[11px] font-bold tracking-wider uppercase text-[#FF8540]">THEN THE STRESS BEGINS</span>
@@ -407,28 +407,28 @@ export default function Home() {
             <h2 className="text-[28px] font-black leading-[1.12] tracking-tight mb-2.5 text-white font-display">
               Prices jump.<br />Captains cancel.<br /><span className="text-jabee-orange">Time runs out.</span>
             </h2>
-            <p className="text-neutral-400 text-[13px] leading-relaxed">
+            <p className="text-neutral-300 text-[13px] leading-relaxed">
               Sometimes the fare changes. Sometimes no captain accepts. Rides get cancelled again and again, and every cancellation costs minutes he doesn't have. The day starts with stress and a bad mood.
             </p>
           </div>
 
-          <div className="relative w-full rounded-2xl overflow-hidden border border-neutral-800 bg-[#14171E] shadow-2xl">
-            <img alt="Anxious professional waiting in the dark" className="w-full h-[320px] object-cover object-center" src="/character3.jpg" />
-            <div className="absolute top-3.5 right-3 dark-glass-card border border-red-500/40 text-red-200 text-[10.5px] font-semibold px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5 backdrop-blur-md">
+          <div className="relative w-full rounded-2xl overflow-hidden border border-neutral-400/50 bg-[#14171E] shadow-xl">
+            <img alt="Anxious professional waiting in the dark" className="w-full h-[420px] object-cover object-bottom" src="/character3.jpg" />
+            <div className="absolute top-3.5 right-3 bg-[#181A20]/90 backdrop-blur-md border border-red-500/40 text-red-200 text-[10.5px] font-semibold px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
               <span>Fare increased to $28.50</span>
             </div>
-            <div className="absolute bottom-14 left-3 dark-glass-card border border-amber-500/30 text-amber-200 text-[10.5px] font-medium px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5 backdrop-blur-md">
+            <div className="absolute bottom-14 left-3 bg-[#181A20]/90 backdrop-blur-md border border-amber-500/30 text-amber-200 text-[10.5px] font-medium px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               <span>Searching for captain...</span>
             </div>
-            <div className="absolute bottom-3.5 right-3 dark-glass-card border border-red-500/40 text-red-300 text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5 backdrop-blur-md">
+            <div className="absolute bottom-3.5 right-3 bg-[#181A20]/90 backdrop-blur-md border border-red-500/40 text-red-300 text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5">
               <span className="text-red-400">✕</span>
               <span>Ride cancelled by captain</span>
             </div>
           </div>
 
-          <div className="mt-4 dark-glass-card rounded-xl p-3 border border-white/10 flex items-center justify-between backdrop-blur-md">
+          <div className="mt-4 bg-[#12141A]/95 backdrop-blur-md rounded-xl p-3 border border-black/15 flex items-center justify-between text-white shadow-md">
             <div className="flex items-center gap-2 text-[11.5px] text-neutral-300">
               <span className="w-2 h-2 rounded-full bg-amber-400"></span>
               <span>High demand in your area</span>
@@ -508,10 +508,10 @@ export default function Home() {
       </section>
 
       {/* MOBILE VIEW */}
-      <section className="block lg:hidden relative pt-10 pb-14 bg-gradient-to-b from-[#0B0D12] via-[#E7E3DB] to-[#F3F1EC]" data-nav-mode="dark">
+      <section className="block lg:hidden relative pt-10 pb-12 bg-gradient-to-b from-[#CFCBC6] to-[#EAE6DF]" data-nav-mode="dark">
         <div className="max-w-[390px] mx-auto px-4">
           <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white mb-5">
-            <img alt="Professional relaxed in office holding coffee mug" className="w-full h-[260px] object-cover object-center" src="/character4.jpg" />
+            <img alt="Professional relaxed in office holding coffee mug" className="w-full h-[420px] object-cover object-center" src="/character4.jpg" />
             <div className="absolute bottom-3 left-3 glass-card text-neutral-800 text-[10.5px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-emerald-500/40 shadow">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
               <span>Captain Rajesh arrived • 08:28 AM</span>
