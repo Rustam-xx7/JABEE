@@ -35,7 +35,7 @@ function drawFrame(ctx, canvas, img) {
   ctx.drawImage(img, drawX, drawY, drawW, drawH);
 }
 
-export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-container' }) {
+export default function BikeScrollCanvas({ isLoading,start = 'top top', triggerId = 'bike-reveal-container' }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const currentFrameRef = useRef(0);
@@ -71,7 +71,7 @@ export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-c
 
     const trigger = ScrollTrigger.create({
       trigger: targetElement,
-      start: 'top top',
+      start,
       end: '+=1300',
       pin: true,
       pinSpacing: true,
@@ -87,7 +87,7 @@ export default function BikeScrollCanvas({ isLoading, triggerId = 'bike-reveal-c
       clearTimeout(refreshTimer);
       redrawRef.current = null;
     };
-  }, [isLoading, triggerId, framesRef]);
+  }, [isLoading, triggerId, start, framesRef]);
 
   // --- When every frame has arrived: repaint the current frame at full accuracy ---
   useEffect(() => {

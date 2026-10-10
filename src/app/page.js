@@ -571,8 +571,8 @@ export default function Home() {
           </div>
 
           <div className="w-full max-w-5xl mx-auto mb-12">
-            <div className="bg-white rounded-3xl p-4 border border-neutral-100 shadow-card">
-              <BikeScrollCanvas isLoading={isLoading} triggerId="bike-reveal-container" />
+            <div id="bike-canvas-pin" className="bg-white rounded-3xl p-4 border border-neutral-100 shadow-card">
+              <BikeScrollCanvas isLoading={isLoading} triggerId="bike-canvas-pin" start="center center" />
             </div>
           </div>
 
