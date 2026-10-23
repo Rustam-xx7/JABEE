@@ -5,9 +5,9 @@ import sharp from 'sharp';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const FOLDERS = ['bikeAnimation', 'character1Animation', 'logoAnimation'];
+const FOLDERS = ['bikeAnimation', 'character1Animation', 'logoAnimation', 'zubbyAnimation'];
 const WIDTH = 1280;
-const QUALITY = 75;
+const QUALITY = 85;
 
 for (const folder of FOLDERS) {
   const dir = path.join('public', folder);
@@ -20,5 +20,5 @@ for (const folder of FOLDERS) {
     await sharp(path.join(dir, f)).resize({ width: WIDTH }).webp({ quality: QUALITY }).toFile(out);
     after += (await fs.stat(out)).size;
   }
-  console.log(`${folder}: ${files.length} frames, ${(before/1e6).toFixed(1)} MB -> ${(after/1e6).toFixed(1)} MB`);
+  console.log(`${folder}: ${files.length} frames, ${(before / 1e6).toFixed(1)} MB -> ${(after / 1e6).toFixed(1)} MB`);
 }

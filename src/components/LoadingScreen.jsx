@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { loadSequence, nearestLoaded } from '../hooks/useFrameSequence';
 
-const LOGO = { folder: 'logoAnimation', count: 150 };
+const LOGO = { folder: 'zubbyAnimation', count: 300 };
 
 // What must be ready before the site is revealed. Keep this list SHORT:
 // only what the user sees in the first screen or two. Bike frames are NOT here;
@@ -43,6 +43,9 @@ export default function LoadingScreen({ onComplete }) {
     // ---- 2. Draw loop: eases the bar toward real progress, scrubs the logo with it ----
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     const start = performance.now();
     let shown = 0;
     let lastPct = -1;
@@ -52,7 +55,8 @@ export default function LoadingScreen({ onComplete }) {
 
     const draw = (img) => {
       if (!img) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       const cr = canvas.width / canvas.height;
       const ir = img.naturalWidth / img.naturalHeight;
       let w, h, x, y;
@@ -104,40 +108,38 @@ export default function LoadingScreen({ onComplete }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F6F5F2] select-none ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black select-none ${
         isExpanding
-          ? 'scale-150 opacity-0 filter blur-lg pointer-events-none'
-          : 'scale-100 opacity-100'
+          ? 'opacity-0 scale-[1.02] filter blur-sm pointer-events-none'
+          : 'opacity-100 scale-100'
       }`}
       style={{
-        transition: `transform ${EXIT_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${EXIT_MS}ms ease-out, filter ${EXIT_MS}ms ease-out`,
-        willChange: 'transform, opacity, filter',
+        transition: `opacity ${EXIT_MS}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${EXIT_MS}ms cubic-bezier(0.4, 0, 0.2, 1), filter ${EXIT_MS}ms ease-out`,
+        willChange: 'opacity, transform, filter',
       }}
     >
-      <div className="absolute w-[600px] h-[600px] bg-orange-100/60 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
-
-      <div className="relative w-full max-w-2xl aspect-video flex items-center justify-center p-4">
+      <div className="relative w-full max-w-4xl aspect-video flex items-center justify-center p-4">
         <canvas
           ref={canvasRef}
           width={1280}
           height={720}
-          className="w-full h-auto object-contain max-h-[60vh] drop-shadow-lg rounded-2xl"
+          className="w-full h-auto object-contain max-h-[60vh] md:max-h-[68vh]"
         />
       </div>
 
-      <div className="flex flex-col items-center gap-3 mt-4 z-10 w-full max-w-xs px-6">
-        <div className="w-full h-2 bg-neutral-200/80 rounded-full overflow-hidden p-0.5 border border-neutral-300/50 shadow-inner">
+      <div className="flex flex-col items-center gap-3.5 mt-2 z-10 w-full max-w-xs px-6">
+        <div className="w-full h-1.5 bg-neutral-800 rounded-full overflow-hidden p-0 border border-white/5">
           <div
-            className="h-full bg-jabee-orange rounded-full transition-all duration-75 ease-out shadow-[0_0_12px_#FF6B1A]"
+            className="h-full bg-gradient-to-r from-orange-600 via-jabee-orange to-amber-400 rounded-full transition-all duration-75 ease-out shadow-[0_0_12px_#FF6B1A]"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="flex items-center justify-between w-full text-xs font-semibold text-neutral-600 tracking-wider font-display">
-          <span className="uppercase text-[10px] tracking-[0.2em] text-jabee-black flex items-center gap-2 font-bold">
+        <div className="flex items-center justify-between w-full text-xs font-semibold tracking-wider font-display">
+          <span className="uppercase text-[10px] tracking-[0.2em] text-neutral-400 flex items-center gap-2 font-bold">
             <span className="w-2 h-2 rounded-full bg-jabee-orange animate-ping" />
-            Initializing JABEE
+            Initializing ZUBBY
           </span>
-          <span className="text-jabee-orange font-extrabold text-sm">{progress}%</span>
+          <span className="text-white font-mono font-bold text-sm">{progress}%</span>
         </div>
       </div>
     </div>

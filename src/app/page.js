@@ -109,7 +109,7 @@ export default function Home() {
                 navMode === 'light' ? 'text-white' : 'text-jabee-black'
               }`}
             >
-              JABEE<span className="text-jabee-orange">.</span>
+              ZUBBY<span className="text-jabee-orange">.</span>
             </span>
           </div>
         </a>
@@ -611,7 +611,7 @@ export default function Home() {
                     MOVEMENT FINDS FORM.
                   </span>
                   <p className="text-sm text-neutral-500 mt-2 font-normal leading-relaxed">
-                    The JABEE bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.
+                    The ZUBBY bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.
                   </p>
                 </div>
               </div>
@@ -657,7 +657,7 @@ export default function Home() {
               <div className="w-[3px] h-9 bg-jabee-orange rounded-full shrink-0 mt-0.5"></div>
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 font-display">MOVEMENT FINDS FORM.</h3>
-                <p className="text-[12px] text-neutral-500 leading-snug mt-0.5">The JABEE bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.</p>
+                <p className="text-[12px] text-neutral-500 leading-snug mt-0.5">The ZUBBY bike arrives at your doorstep on time. Sleek, dedicated, and ready when you are.</p>
               </div>
             </div>
           </div>
@@ -670,14 +670,14 @@ export default function Home() {
       <section className="py-14 bg-gradient-to-b from-white to-[#F9F8F5] border-t border-neutral-100 text-center" data-purpose="brand-milestone-cta" id="download-section">
         <div className="max-w-[390px] lg:max-w-4xl mx-auto px-4 flex flex-col items-center">
           <div className="flex items-baseline justify-center mb-2">
-            <span className="text-4xl lg:text-7xl font-black tracking-tight text-neutral-900 font-display">JABEE</span>
+            <span className="text-4xl lg:text-7xl font-black tracking-tight text-neutral-900 font-display">ZUBBY</span>
             <span className="w-3.5 h-3.5 lg:w-5 lg:h-5 rounded-full bg-jabee-orange ml-1"></span>
           </div>
           <p className="text-neutral-900 font-extrabold text-[17px] lg:text-2xl mb-2 leading-snug font-display">
             Office professionals' favourite ride booking app.
           </p>
           <p className="text-neutral-500 text-[13px] lg:text-base leading-relaxed max-w-[340px] lg:max-w-xl mb-6">
-            Our founder lived this problem every morning. So he built JABEE for everyone who makes the same commute. The JABEE team makes it stress-free for you.
+            Our founder lived this problem every morning. So he built ZUBBY for everyone who makes the same commute. The ZUBBY team makes it stress-free for you.
           </p>
 
           <a className="w-full max-w-[280px] lg:max-w-[320px] bg-jabee-orange hover:bg-jabee-orangeDark text-white py-3.5 px-6 rounded-full font-bold shadow-md shadow-jabee-orange/20 flex items-center justify-center gap-3 transition-transform active:scale-95" href="#playstore">
@@ -697,7 +697,7 @@ export default function Home() {
       </section>
 
       {/* ============================================================== */}
-      {/* MEET THE JABEE TEAM: Desktop + Mobile Cards                    */}
+      {/* MEET THE ZUBBY TEAM: Desktop + Mobile Cards                    */}
       {/* ============================================================== */}
       <section className="py-16 md:py-24 px-4 sm:px-6 md:px-16 lg:px-24 bg-[#FAFAFA] border-t border-neutral-100" data-nav-mode="dark" id="team">
         <div className="max-w-7xl mx-auto">
@@ -709,7 +709,7 @@ export default function Home() {
               </span>
             </div>
             <h2 className="text-2xl md:text-5xl font-extrabold text-jabee-black tracking-tight font-display mb-3 md:mb-4">
-              The people behind JABEE
+              The people behind ZUBBY
             </h2>
             <p className="text-neutral-500 text-xs md:text-lg max-w-[320px] md:max-w-xl mx-auto">
               A dedicated crew in Burdwan, West Bengal obsessed with bringing calm, joy, and punctuality to your everyday commute.
@@ -859,7 +859,7 @@ export default function Home() {
             <div className="lg:col-span-5 space-y-2 md:space-y-4">
               <div className="flex items-center gap-2">
                 <span className="text-xl md:text-3xl font-black tracking-wider text-white font-display">
-                  JABEE<span className="text-jabee-orange">.</span>
+                  ZUBBY<span className="text-jabee-orange">.</span>
                 </span>
               </div>
               <p className="text-xs md:text-base text-neutral-300 font-medium max-w-sm">
@@ -899,15 +899,15 @@ export default function Home() {
 
               <div className="text-xs text-neutral-400">
                 <span className="text-[11px] text-neutral-500 block">Contact Us</span>
-                <a className="hover:text-jabee-orange transition-colors font-medium" href="mailto:support@jabee.in">
-                  support@jabee.in
+                <a className="hover:text-jabee-orange transition-colors font-medium" href="mailto:support@zubby.in">
+                  support@zubby.in
                 </a>
               </div>
             </div>
           </div>
 
           <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between text-[10.5px] md:text-xs text-neutral-500 gap-2 md:gap-4 text-center md:text-left">
-            <div>© 2026 JABEE, Burdwan, West Bengal. All rights reserved.</div>
+            <div>© 2026 ZUBBY, Burdwan, West Bengal. All rights reserved.</div>
             <div className="flex items-center gap-4 text-neutral-400">
               <a className="hover:text-white transition-colors" href="#">Privacy Policy</a>
               <span>•</span>

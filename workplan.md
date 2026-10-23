@@ -1,16 +1,16 @@
-# JABEE Brand Storytelling Website — Project Workplan
+# ZUBBY (formerly JABEE) Brand Storytelling Website — Project Workplan
 
 > **Purpose:** This document is the single source of truth for any AI agent or developer working on this project.  
 > Reading this file alone is enough to fully understand what was built, why, how it works, and what still needs to be done — no chat history required.
 
 ---
 
-## 1. What Is JABEE?
+## 1. What Is ZUBBY?
 
-**JABEE** is a ride-booking app for office professionals in Burdwan, West Bengal, India.  
+**ZUBBY** (formerly JABEE) is a ride-booking app for office professionals in Burdwan, West Bengal, India.  
 - **Tagline:** "Go On" / "Office professionals' favourite ride booking app."  
 - **Core Value Proposition:** Fixed daily motorcycle captains for office commuters. Same captain, same time, same fare — every weekday. Zero surge pricing, zero rebooking.  
-- **Contact / Support:** support@jabee.in  
+- **Contact / Support:** support@zubby.in  
 - **Company Location:** Burdwan, West Bengal, India  
 - **App Platform:** Android (Google Play)  
 
@@ -18,11 +18,11 @@
 
 ## 2. What This Codebase Is
 
-This is a **brand storytelling website** for JABEE — a single-page marketing site that narrates the commuter's journey through cinematic scroll-driven sections, character animations, and a full bike reveal animation.
+This is a **brand storytelling website** for ZUBBY — a single-page marketing site that narrates the commuter's journey through cinematic scroll-driven sections, character animations, and a full bike reveal animation.
 
 **Not** an app dashboard or e-commerce site. It is a **pure marketing/brand showcase** for:
 1. Telling the commuter's pain story visually
-2. Revealing the JABEE bike as the solution
+2. Revealing the ZUBBY bike as the solution
 3. Showcasing features and team
 4. Driving Google Play downloads
 

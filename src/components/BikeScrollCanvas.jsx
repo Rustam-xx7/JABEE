@@ -111,7 +111,7 @@ export default function BikeScrollCanvas({ isLoading,start = 'top top', triggerI
         <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-lg border border-neutral-200/80 flex items-center gap-2 z-20">
           <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-jabee-orange animate-pulse" />
           <span className="text-[10px] sm:text-xs font-bold text-jabee-black tracking-wide">
-            JABEE Fleet Transformation
+            ZUBBY Fleet Transformation
           </span>
         </div>
       </div>

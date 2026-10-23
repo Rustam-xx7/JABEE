@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: "JABEE — Office Professionals' Favourite Ride Booking App",
+  title: "ZUBBY — Office Professionals' Favourite Ride Booking App",
   description: "Predictable daily motorcycle captains for office goers. Zero morning surge, same captain every weekday.",
 };
 
