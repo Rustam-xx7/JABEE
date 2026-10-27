@@ -93,21 +93,19 @@ export default function Home() {
 
       {/* FIXED FLOATING NAVBAR */}
       <header
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 py-3.5 px-4 md:px-12 flex items-center justify-between ${
-          navScrolled
-            ? navMode === 'light'
-              ? 'bg-[#0B0D12]/90 backdrop-blur-md border-b border-white/10'
-              : 'bg-white/90 backdrop-blur-md border-b border-neutral-200/70 shadow-sm'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 py-3.5 px-4 md:px-12 flex items-center justify-between ${navScrolled
+          ? navMode === 'light'
+            ? 'bg-[#0B0D12]/90 backdrop-blur-md border-b border-white/10'
+            : 'bg-white/90 backdrop-blur-md border-b border-neutral-200/70 shadow-sm'
+          : 'bg-transparent'
+          }`}
         id="main-nav"
       >
         <a className="flex items-center gap-2 group" href="#">
           <div className="flex items-center gap-1.5">
             <span
-              className={`text-xl md:text-2xl font-black tracking-wider transition-colors duration-300 font-display ${
-                navMode === 'light' ? 'text-white' : 'text-jabee-black'
-              }`}
+              className={`text-xl md:text-2xl font-black tracking-wider transition-colors duration-300 font-display ${navMode === 'light' ? 'text-white' : 'text-jabee-black'
+                }`}
             >
               ZUBBY<span className="text-jabee-orange">.</span>
             </span>
@@ -116,33 +114,29 @@ export default function Home() {
 
         <nav className="hidden md:flex items-center gap-8">
           <a
-            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${
-              navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
-            }`}
+            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
+              }`}
             href="#story"
           >
             Story
           </a>
           <a
-            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${
-              navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
-            }`}
+            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
+              }`}
             href="#bike-reveal"
           >
             The Revelation
           </a>
           <a
-            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${
-              navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
-            }`}
+            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
+              }`}
             href="#features"
           >
             Features
           </a>
           <a
-            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${
-              navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
-            }`}
+            className={`text-sm font-medium transition-colors hover:text-jabee-orange ${navMode === 'light' ? 'text-neutral-200' : 'text-[#333333]'
+              }`}
             href="#team"
           >
             Team
@@ -154,8 +148,15 @@ export default function Home() {
             className="bg-jabee-orange hover:bg-jabee-orangeDark text-white px-3.5 py-1.5 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md shadow-jabee-orange/30 flex items-center gap-1.5"
             href="#download-section"
           >
-            <svg className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.22-.387C3.13 21.282 3 20.468 3 19.349V4.651c0-1.119.13-1.933.39-2.45.064-.132.138-.262.22-.387zm1.48-.909l11.472 6.574-2.88 2.88L5.09.905zm0 22.19l8.59-8.59 2.88 2.88-11.47 6.57c.002 0 0-.86 0-.86zm12.39-7.098l3.14-1.8c.84-.48.84-1.26 0-1.74l-3.14-1.8-2.52 2.67 2.52 2.67z" />
+            <svg className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" viewBox="0 0 512 512">
+              {/* Left Blue Spine */}
+              <path fill="#4285F4" d="M47.7 26.6C44.4 30.1 42.5 35.7 42.5 43v426c0 7.3 1.9 12.9 5.2 16.4l1.6 1.4 238.4-238.4v-5.6L49.3 25.2l-1.6 1.4z" />
+              {/* Right Yellow Arrow */}
+              <path fill="#FBBC04" d="M371.7 319.4l-84-84v-5.6l84-84 1.9 1.1 99.4 56.5c28.3 16.1 28.3 42.5 0 58.6l-99.4 56.5-1.9 1.1z" />
+              {/* Bottom Red Wedge */}
+              <path fill="#EA4335" d="M287.7 235.4L47.7 475.4c9.3 9.9 24.8 11.1 42.1 1.4l241.9-137.4-44-44z" />
+              {/* Top Green Wedge */}
+              <path fill="#34A853" d="M287.7 235.4l44-44-241.9-137.4c-17.3-9.7-32.8-8.5-42.1 1.4l240 240z" />
             </svg>
             <span>Download App</span>
           </a>
@@ -681,8 +682,15 @@ export default function Home() {
           </p>
 
           <a className="w-full max-w-[280px] lg:max-w-[320px] bg-jabee-orange hover:bg-jabee-orangeDark text-white py-3.5 px-6 rounded-full font-bold shadow-md shadow-jabee-orange/20 flex items-center justify-center gap-3 transition-transform active:scale-95" href="#playstore">
-            <svg className="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
-              <path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7l-.1.1zm12.3 9.4l-2.4-2.4v-.2l2.4-2.4.1.1 2.8 1.6c.8.5.8 1.2 0 1.7l-2.9 1.6zm-1.8 1.8l-10.4 10.4c.3.1.7.1 1.2-.2l10.9-6.3-1.7-3.9zm0-2L5 2.8c-.5-.3-.9-.3-1.2-.2l10.4 10.4 1.7-2.1z"></path>
+            <svg className="w-5 h-5 lg:w-6 lg:h-6 shrink-0" viewBox="0 0 512 512">
+              {/* Left Blue Spine */}
+              <path fill="#4285F4" d="M47.7 26.6C44.4 30.1 42.5 35.7 42.5 43v426c0 7.3 1.9 12.9 5.2 16.4l1.6 1.4 238.4-238.4v-5.6L49.3 25.2l-1.6 1.4z" />
+              {/* Right Yellow Arrow */}
+              <path fill="#FBBC04" d="M371.7 319.4l-84-84v-5.6l84-84 1.9 1.1 99.4 56.5c28.3 16.1 28.3 42.5 0 58.6l-99.4 56.5-1.9 1.1z" />
+              {/* Bottom Red Wedge */}
+              <path fill="#EA4335" d="M287.7 235.4L47.7 475.4c9.3 9.9 24.8 11.1 42.1 1.4l241.9-137.4-44-44z" />
+              {/* Top Green Wedge */}
+              <path fill="#34A853" d="M287.7 235.4l44-44-241.9-137.4c-17.3-9.7-32.8-8.5-42.1 1.4l240 240z" />
             </svg>
             <div className="text-left">
               <div className="text-[9px] uppercase tracking-wider leading-none text-white/80">AVAILABLE ON</div>
@@ -888,8 +896,15 @@ export default function Home() {
                 className="inline-flex items-center gap-3 bg-neutral-900 border border-neutral-700 hover:border-jabee-orange px-4 py-2.5 rounded-xl text-white transition-all duration-200"
                 href="#download-section"
               >
-                <svg className="w-5 h-5 fill-jabee-orange" viewBox="0 0 24 24">
-                  <path d="M3.609 1.814L13.792 12 3.61 22.186a2.43 2.43 0 0 1-.22-.387C3.13 21.282 3 20.468 3 19.349V4.651c0-1.119.13-1.933.39-2.45.064-.132.138-.262.22-.387zm1.48-.909l11.472 6.574-2.88 2.88L5.09.905zm0 22.19l8.59-8.59 2.88 2.88-11.47 6.57c.002 0 0-.86 0-.86zm12.39-7.098l3.14-1.8c.84-.48.84-1.26 0-1.74l-3.14-1.8-2.52 2.67 2.52 2.67z" />
+                <svg className="w-5 h-5 shrink-0" viewBox="0 0 512 512">
+                  {/* Left Blue Spine */}
+                  <path fill="#4285F4" d="M47.7 26.6C44.4 30.1 42.5 35.7 42.5 43v426c0 7.3 1.9 12.9 5.2 16.4l1.6 1.4 238.4-238.4v-5.6L49.3 25.2l-1.6 1.4z" />
+                  {/* Right Yellow Arrow */}
+                  <path fill="#FBBC04" d="M371.7 319.4l-84-84v-5.6l84-84 1.9 1.1 99.4 56.5c28.3 16.1 28.3 42.5 0 58.6l-99.4 56.5-1.9 1.1z" />
+                  {/* Bottom Red Wedge */}
+                  <path fill="#EA4335" d="M287.7 235.4L47.7 475.4c9.3 9.9 24.8 11.1 42.1 1.4l241.9-137.4-44-44z" />
+                  {/* Top Green Wedge */}
+                  <path fill="#34A853" d="M287.7 235.4l44-44-241.9-137.4c-17.3-9.7-32.8-8.5-42.1 1.4l240 240z" />
                 </svg>
                 <div className="text-left">
                   <div className="text-[9px] uppercase font-semibold text-neutral-400">Download for Android</div>
